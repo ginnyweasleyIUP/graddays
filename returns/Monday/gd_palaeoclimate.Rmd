@@ -1,0 +1,161 @@
+---
+title: "Monday: Ice age rhythms"
+output: html_notebook
+---
+
+Investigating the temp-variability relationship on long timescales: Illustration using the LRO4 stack;
+
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+setwd("~/R/spielwiese/graddays/")
+library(zoo)
+
+```
+
+```{r LR04}
+## 
+rm(list = ls())
+graphics.off()
+
+## Preamble
+outputdir="~/R/spielwiese/graddays/results"
+
+
+## 1 Read data
+dat<-read.csv(sprintf("Datasets/Monday/LR04stack.csv"),header=TRUE)
+LR<-zoo(dat[,2],order.by=dat[,1])
+
+```
+
+
+
+```{r}
+
+#x11(width=12,height=8)
+par(lwd=2,font=2,font.axis=2,font.lab=2,cex=2,mar=c(4,4,1,1),mfcol=c(1,2))
+plot(LR,type="n",ylim=range(LR)[2:1],xlab="",ylab="")
+axis(1,at=seq(0,5)*10^3,labels=seq(0,5))
+axis(2)
+mtext("Age [Ma]",side=1,line=2,cex=1.5)
+mtext("benthic d18O (T/ice vol)",side=2,line=2,cex=1.5)
+text(4*10^3,range(LR)[2],"Lisiecki & Raymo, 2004")
+lines(LR)
+#dev.copy2pdf(file=sprintf("%sLR04_MeanVsStd-a.pdf",outputdir),out.type="pdf")
+
+
+## 2 Rough calibration
+tp<-c()
+tp[1]<-length(which((index(LR)-5)<0))
+tp[2]<-length(which((index(LR)-21)<0))
+abline(v=index(LR)[tp],col="forestgreen",lwd=2)
+abline(h=coredata(LR)[tp],col="forestgreen",lwd=2)
+#dev.copy2pdf(file=sprintf("%sLR04_MeanVsStd-b.pdf",outputdir),out.type="pdf")
+
+Cpermil<-diff(coredata(LR)[tp])/5 #permil per Kelvin
+holoffset<- mean(window(LR,start=0,end=10))/(Cpermil*c(-1))
+LR.T<-LR/Cpermil*c(-1) - holoffset
+
+```
+
+```{r}
+
+## 3 Obtain variance/mean
+# ## cut this into windows, compute variance and mean in windows
+M<-V<-c()
+startpoints<-seq(start(LR.T),end(LR.T)-300,by=150)
+for (i in 1:length(startpoints)){
+ts.temp<-window(LR.T,start=startpoints[i],end=startpoints[i]+300)
+
+M[i]<-mean(ts.temp)
+V[i]<-var(ts.temp)
+rm(ts.temp)
+}
+
+## 4 Plot
+# x11(width=6,height=6)
+# par(cex=2,font=2,lwd=2,mar=c(4,4,1,1))
+plot(M,sqrt(V),xlab="",ylab="",pch=20,cex=3)
+mtext("mean T/IceVol (wrt 0-5kyr)",side=1,line=2,cex=1.5)
+mtext("std T/IceVol",side=2,line=2,cex=1.5)
+grid()
+# get rough slope and intercept
+#dev.off()
+#plot(lm(M~sqrt(V)))
+
+##
+
+plot(M,sqrt(V),type="n")
+text(M,sqrt(V),1:length(V))
+
+#x11()
+par(cex=2,font=2,lwd=2,mar=c(4,4,1,1))
+plot(M,sqrt(V)/(M+holoffset),xlab="",ylab="",pch=20)
+mtext("mean (T/IceVol) [dK]",side=1,line=2,cex=2)
+mtext("std/mean",side=2,line=2,cex=2)
+
+```
+
+```{r Interpolation}
+
+plot(index(LR)[-1],diff(index(LR)),xlab="kyrs BP",ylab="kyrs spacing")
+# 
+plot(LR,xlab="kyrs BP",ylab="benthic d18O")
+intp<-approx(index(LR),coredata(LR),xout = seq(start(LR),end(LR),by=1))
+LR.int<-zoo(intp$y,order.by=intp$x)
+lines(LR.int,type="l",col="red")
+legend("topright",c("raw","interpolated"),col=c("black","red"),lty=1)
+
+```
+
+
+```{r}
+
+spec<-spectrum(as.ts(LR.int),plot=FALSE)
+plot(1/spec$freq,spec$spec,log="xy",type="l",xlab="period [kyrs]",ylab="density")
+abline(v=c(23,40,100),col="red")
+```
+
+
+```{r Compare first and last million years}
+
+plot(LR.int)
+lines(window(LR.int,start=3000,end=5000),col="red")
+lines(window(LR.int,start=0,end=1000),col="blue")
+
+
+spec.40k<-spectrum(window(LR.int,start=3000,end=5000),plot=FALSE)
+spec.100k<-spectrum(window(LR.int,start=0,end=1000),plot=FALSE)
+
+
+plot(1/spec$freq,spec$spec,"n",log="xy",xlim=c(10,250),xlab="period [kyrs]",ylab="spectral density")
+lines(1/spec$freq,spec$spec)
+lines(1/spec.40k$freq,spec.40k$spec,col="red")
+lines(1/spec.100k$freq,spec.100k$spec,col="blue")
+legend("bottomright",c("all 5 Myrs", "3-5 Myrs", "0-1 Myrs"),col=c("black","red","blue"),lty=1)
+#read.csv("Datasets/Monday/edc3deuttemp2007.txt")
+
+```
+
+
+
+```{r}
+read.table("Datasets/Monday/orbit/insol91.jun",skip=3)
+orbit<-read.table("Datasets/Monday/orbit/orbit91",skip=3)
+colnames(orbit)<-c("kyrs BP","ecc","omega","obliquity","precession","65NJul","65SJan","15NJul","15SJan")
+
+
+plot(orbit$`kyrs BP`,orbit$ecc)
+plot(orbit$`65NJul`,type="l")
+orb.65N<-zoo(orbit$`65NJul`,order.by=orbit$`kyrs BP`)
+
+spec.insol.65N<-spectrum(orb.65N,plot=FALSE)
+plot(1/spec.insol.65N$freq,spec.insol.65N$spec,log="xy",type="l",xlim=c(3,250),xlab="period [kyrs]",ylab="spectral density")
+
+abline(v=c(19,23,40,100),col="red")
+grid()
+```
+
+```{r}
+
+```
+
