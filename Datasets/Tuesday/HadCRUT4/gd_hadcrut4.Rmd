@@ -1,0 +1,99 @@
+---
+title: 'HadCRUT4 data: Station data'
+author: "Kira Rehfeld"
+date: "October 8, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+setwd("~/R/spielwiese/graddays/")
+outputdir="~/R/spielwiese/graddays/results"
+
+library(zoo)
+library(ncdf4)
+library(fields)
+library(mapdata)
+library(maps)
+library(tidyverse)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r Inspect the dataset}
+ncf<-ncdf4::nc_open("Datasets/Tuesday/HadCRUT4/HadCRUT.4.6.0.0.anomalies.1.nc")
+ncf
+```
+
+
+```{r}
+dat<-list()
+dat$tanom<-ncdf4::ncvar_get(ncf,varid = "temperature_anomaly")
+dat$lat<-ncdf4::ncvar_get(ncf,varid = "latitude")
+dat$lon<-ncdf4::ncvar_get(ncf,varid = "longitude")
+dat$time<-ncdf4::ncvar_get(ncf,varid = "time")
+dat$time<-as.Date(dat$time,origin="1850-1-1")
+dim(dat$tanom)
+summary(dat)
+
+dimnames(dat$tanom)<-list(longitude=dat$lon,latitude=dat$lat,time=dat$time)
+```
+
+
+```{r}
+dat$tanom[,,1]
+
+
+
+image.plot(dat$lon,dat$lat,dat$tanom[,,1])
+maps::map("world",add=TRUE,interior=FALSE)
+mtext(side=3,dat$time[1])
+
+
+```
+
+```{r Obtain the number of months with observations}
+fld.nas<-apply(dat$tanom,c(1,2),function(x){sum(!is.na(x))})
+image.plot(dat$lon,dat$lat,fld.nas/length(dat$time))
+maps::map("world",add=TRUE,interior=FALSE)
+mtext(side=3,dat$time[1])
+
+```
+```{r Grid cells of the world covered}
+time.nas<-apply(dat$tanom,3,function(x){sum(!is.na(x))})
+plot(dat$time,time.nas/(length(dat$lon)*length(dat$lat)),type="l")
+
+
+```
+
+
+```{r Approximate global mean temperature}
+simpleawmean<-function(fld){
+zonmean<-apply(fld,2,mean,na.rm=TRUE)
+w.lats<-cos(dat$lat*pi/180)/sum(cos(dat$lat*pi/180))
+#if ((sum(is.na(zonmean))) > 2) {return(NA)}
+tavg<-sum(w.lats*zonmean,na.rm=TRUE)
+return(tavg)
+}
+dat$gmst<-apply(dat$tanom,3,simpleawmean)
+
+
+plot(dat$time,dat$gmst,type="l",xlab="time",ylab="average temperature anomaly")
+lines(dat$time,apply(dat$tanom,3,mean,na.rm=TRUE),type="l",col="red")
+
+
+```
+
+
+```{r Compare this to the local temperature change}
+loc<-list()
+loc$lon<-5
+loc$lat<-55
+lat.i<-which.min(abs(dat$lat-loc$lat))
+lon.i<-which.min(abs(dat$lon-dat$lon))
+
+plot(dat$time,dat$tanom[lon.i,lat.i,],type="l")
+
+```
+

@@ -1,0 +1,801 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <meta name="DC.language" content="EN-US" >
+    <meta name="author" content="ESRL Web Team">
+    <meta name="DC.creator" content="US Department of Commerce, NOAA, Earth System Research Laboratory" >
+
+    
+    <meta name="DC.date.created"  content="2005-10-01" >
+    <meta name="DC.date.reviewed" content="2018-03-08" >
+
+
+    <meta name="keywords" content="noaa, national oceanic and atmospheric administration, earth system research, esrl, climate, air quality, numerical modeling, global warming, climate change">
+
+
+    <meta name="description" content="The NOAA Earth System Research Laboratory was formed to observe and understand the Earth system and to develop products, through a commitment to research that will advance the National Oceanic and Atmopsheric Administration's environmental information and services on global to local scales.">
+    <meta name="DC.description" content="The NOAA Earth System Research Laboratory was formed to observe and understand the Earth system and to develop products, through a commitment to research that will advance the National Oceanic and Atmopsheric Administration's environmental information and services on global to local scales." >
+
+
+
+
+    <title>ESRL Global Monitoring Division - Global Greenhouse Gas Reference Network</title>
+    <meta name="DC.title" content="ESRL Global Monitoring Division - Global Greenhouse Gas Reference Network" >
+
+
+
+
+    <!-- Bootstrap -->
+    <link href="/gmd/css/bootstrap.min.css" rel="stylesheet" media="all">
+<!--    <link href="/gmd/css/bootstrap-theme.css" rel="stylesheet" media="all">  -->
+    <link href="/gmd/css/bootstrap-local.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/header.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/major_nav.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/colors.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/style.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/sidebar3.css" rel="stylesheet" media="all"> 
+    <link href="/gmd/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/gmd/js/html5shiv.js"></script>
+      <script src="/gmd/js/respond.js"></script>
+    <![endif]-->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--    <script src="//code.jquery.com/jquery.js"></script>  -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" ></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/gmd/js/bootstrap.min.js"></script>
+    <script src="/gmd/js/jquery.hoverIntent.minified.js"></script>
+    <script src="/gmd/js/bootstrap-hover-dropdown.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body>
+
+
+    <div class="container">
+
+	<ol class="breadcrumb hidden-xs" id="minor_header">
+		<li><a href="https://www.commerce.gov/">U.S. Department of Commerce</a></li> 
+		<li><a href="http://www.noaa.gov/">National Oceanic &amp; Atmospheric Administration</a></li>
+		<li><a href="https://research.noaa.gov/">NOAA Research</a></li>
+	</ol>
+
+	<div id="major_header">
+
+		<div id="search" class="hidden-xs">
+			<form action="https://search.usa.gov/search" class="form-inline">
+				<input type="hidden" name="affiliate" value="noaa_esrl_gmd">
+				<input type="hidden" name="v:project" value="firstgov" >
+				<label for="query-field"> Search GMD:</label><br >
+				<div class="input-group">
+					<input type="text" name="query" id="query-field" autocomplete="off" class='form-control input-xs' placeholder="Search">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default btn-xs" aria-label="Search"><i class="fa fa-search"></i></button> 
+					</span>
+				</div>
+			</form>
+
+			<a href="https://www.esrl.noaa.gov/calendar/">Calendar</a>&nbsp;|&nbsp;
+			<a href="https://nsd.rdc.noaa.gov/nsd/pubsearch">People</a>&nbsp;|&nbsp;
+			<a href="/gmd/publications/">Publications</a>
+		</div>
+
+		<a href="http://www.noaa.gov"><img class="logo" src="/gmd/images/noaalogo2.png" alt="NOAA Logo"></a>
+		<div id="lab"><a href="https://www.esrl.noaa.gov">Earth System Research Laboratory</a></div> 
+		<div id="division"><a href="/gmd/">Global Monitoring Division</a></div>
+
+		<!-- force major_header height to include search div -->
+		<div class="clearfix"></div>
+
+	</div> <!-- end major_header -->
+
+
+	<nav class="navbar navbar-default">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".majornav">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/gmd/">Home</a> 
+
+  </div>
+
+  <div class="collapse navbar-collapse majornav">
+    <ul class="nav navbar-nav">
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">About <b class="caret"></b></a>
+		 <ul class="dropdown-menu">
+			<li><a href="/gmd/about/aboutgmd.html">About GMD</a></li>
+			<li><a href="/gmd/about/orgchart.html">Organization Chart</a></li>
+			<li><a href="/gmd/about/stafflist.html">Staff</a></li>
+			<li><a href="/gmd/about/stafflist_group.html">Staff by Group</a></li>
+			<li><a href="/gmd/about/contacts.html">Contacts</a></li>
+			<li><a href="/gmd/about/visiting.html">Visitor Information</a></li>
+			<li><a href="http://www.esrl.noaa.gov/about/jobs.html">Employment</a></li>
+			<li><a href="https://sites.google.com/a/noaa.gov/oar-esrl-gmd-intranet/">Intranet</a></li>
+		</ul>
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Research<b class="caret"></b></a>
+    
+		 <ul class="dropdown-menu">
+			<li><h4>Research Areas</h4></li>
+			<li><a href="/gmd/about/research.html">Overview</a></li>
+			<li><a href="/gmd/about/GMD_Research_Plan_2018-2022.pdf">GMD Research Plan <span class="fa fa-file-pdf-o"></span></a></li>
+			<li><a href="/gmd/about/theme1.html">Greenhouse Gases and Carbon Cycle</a></li>
+			<li><a href="/gmd/about/theme2.html">Surface Radiation, Clouds, and Aerosols</a></li>
+			<li><a href="/gmd/about/theme3.html">Stratospheric Ozone Recovery</a></li>
+			<li><a href="/gmd/ccl/">Central Calibration Laboratory</a></li>
+			<li><h4>Research Groups</h4></li>
+			<li><a href="/gmd/aero/">Aerosols</a></li>
+			<li><a href="/gmd/ccgg/">Greenhouse Gases</a></li>
+			<li><a href="/gmd/hats/">Halocarbons and Trace Gases</a></li>
+			<li><a href="/gmd/ozwv/">Ozone and Water Vapor</a></li>
+			<li><a href="/gmd/grad/">Global Radiation</a></li>
+		</ul>
+
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Data and Products<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><h4>Data</h4></li>
+			<li><a href="/gmd/dv/data/"><img src="/gmd/icons/magnifier.png" alt="">Search for Data</a></li>
+			<li><a href="/gmd/dv/ftpdata.html"><img src="/gmd/icons/database.png" alt="">Data Archive</a></li>
+			<li><a href="/gmd/dv/site/"><img src="/gmd/icons/world.png" alt="">Measurement Sites</a></li>
+
+			<li><h4>Tools</h4></li>
+			<li><a href="/gmd/dv/iadv/"><img src="/gmd/icons/chart_curve.png" alt="">Interactive Data Viewer</a></li>
+			<li><a href="/gmd/grad/solcalc/"><img src="/gmd/icons/weather_cloudy.png" alt="">Solar Calculator</a></li>
+			<li><h4>Products</h4></li>
+			<li><a href="/gmd/aggi/"><img src="/gmd/images/aggiicon.png" alt="">Greenhouse Gas Index</a></li>
+			<li><a href="/gmd/odgi/"><img src="/gmd/images/odgiicon.png" alt="">Ozone Depletion Index</a></li>
+			<li><a href="/gmd/ccgg/trends/"><img src="/gmd/images/trendsicon.png" alt="">Trends in CO<sub>2</sub></a></li>
+			<li><a href="/gmd/ccgg/trends_ch4/"><img src="/gmd/images/trendsicon.png" alt="">Trends in CH<sub>4</sub></a></li>
+			<li><a href="/gmd/ccgg/carbontracker/"><img src="/gmd/images/cticon.png" alt="">CarbonTracker</a></li>
+			<li><a href="/gmd/ccgg/obspack/"><img src="/gmd/icons/database.png" alt="">ObsPack</a></li>
+			<li><a href="/gmd/ccgg/globalview/"><img src="/gmd/images/gvicon.png" alt="">GLOBALVIEW</a></li>
+			<li><a href="/gmd/grad/snomelt.html"><img src="/gmd/icons/weather_snow.png" alt="">Barrow's Annual Snow Cycle</a></li>
+			<li><h4>Visualization</h4></li>
+			<li><a href="/gmd/dv/ozwv/">Ozone and Water Vapor</a></li>
+			<li><a href="/gmd/dv/rad/">Radiation</a></li>
+			<li><a href="/gmd/hats/data.html">Trace Gases</a></li>
+			<li><a href="/gmd/aero/net/">Aerosols</a></li>
+			<li><a href="/gmd/dv/spo_oz/">South Pole Ozone Hole</a></li>
+			<li><a href="/gmd/dv/"><small><em>&nbsp;More Options...</em></small></a></li>
+		</ul>
+	</li>
+
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Observatories<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><a href="/gmd/obop/"><img class='menuimage' src="/gmd/images/obsmapicon.png" alt="">Observatory Operations</a></li>
+			<li><a href="/gmd/obop/brw/"><img class='menuimage' src="/gmd/images/brwstation_small3.jpg" alt="">Barrow, Alaska</a></li>
+			<li><a href="/gmd/obop/mlo/"><img class='menuimage' src="/gmd/images/mlostation_small3.jpg" alt="">Mauna Loa, Hawaii</a></li>
+			<li><a href="/gmd/obop/smo/"><img class='menuimage' src="/gmd/images/smostation_small3.jpg" alt="">American Samoa</a></li>
+			<li><a href="/gmd/obop/spo/"><img class='menuimage' src="/gmd/images/spostation_small3.jpg" alt="">South Pole</a></li>
+			<li>-----------------------------</li>
+			<li><a href="/gmd/obop/spo/livecamera.html">South Pole Webcam</a></li>
+			<li><a href="/gmd/obop/mlo/livecam/livecam.html">Mauna Loa Webcams</a></li>
+			<li><a href="/gmd/obop/brw/livecamera.html">Barrow Webcam</a></li>
+
+		</ul>
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">News &amp; Events<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><a href="/gmd/news/">News</a></li>
+			<li><a href="/gmd/about/seminars.php">Seminars</a></li>
+			<li><a href="/gmd/review/">Global Monitoring Division Review</a></li>
+			<li><h4>Global Monitoring Annual Conference</h4>
+
+			<div class="menu_box">
+				<a href="/gmd/annualconference/" >
+				<div class="illustration">
+					<img src="/gmd/gmac/images/gmac_logo_vsmall.png" alt="GMAC">
+				</div>
+				<div class="menutext">
+					The 47<sup>th</sup> Global Monitoring Conference, May 21-22, 2019 in Boulder.
+				</div>
+				</a>
+			</div>
+		</ul>
+            
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Information<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+            
+			<li><a href="/gmd/education/"><img src="/gmd/icons/education.png" alt=""> Education/Outreach</a></li>
+			<li><a href="/gmd/publications/"><img src="/gmd/icons/page_white_stack.png" alt=""> Publications</a></li>
+			<li><a href="/gmd/education/faq_cat-1.html"><img src="/gmd/icons/question.png" alt=""> FAQ's</a></li>
+			<li><a href="/gmd/safety/"><img src="/gmd/icons/caution_radiation.png" alt=""> Safety Program</a></li>
+			<li><a href="/gmd/Photo_Gallery/"><img src="/gmd/icons/camera.png" alt=""> Photo Gallery</a></li>
+
+		</ul>
+	</li>
+
+    </ul>
+  </div>
+</nav>
+
+
+	<div id="mainsection">
+
+<!--	 -->
+
+	
+		<!-- minor navigation -->
+		
+<div class="row gggrn_header">
+
+	<div class="col-md-4">
+
+		<a class="media" href="/gmd/ccgg/">
+			<img src="/gmd/ccgg/gggrn_small.png" class="media-object pull-left" alt="GGRN">
+			<h4 class="media-heading">Global Greenhouse Gas Reference Network</h4> 
+		</a>
+	</div>
+
+	<div class="col-md-8">
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="btn btn-default navbar-toggle subnav-toggle" data-toggle="collapse" data-target="#ggrnnav">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse pull-right" data-role="navigation" id="ggrnnav">
+			<ul class="nav navbar-nav" id="subnav">
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference Network <b class="caret"></b></a>
+					 <ul class="dropdown-menu">
+						<li><a href='/gmd/ccgg/index.html'>Home</a></li>
+						<li><a href='/gmd/ccgg/about.html'>About the Reference Network</a></li>
+						<li><a href='/gmd/ccgg/ggrn.php'>Reference Network Sites</a></li>
+						<li><a href='/gmd/ccgg/flask.php'>Cooperative Sampling Network</a></li>
+						<li><a href='/gmd/ccgg/insitu/'>In-Situ Measurements</a></li>
+						<li><a href='/gmd/ccgg/aircraft/'>Aircraft Measurements</a></li>
+						<li><a href='/gmd/ccgg/aircore/'>AirCore Sampling System</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Data <b class="caret"></b></a>
+					 <ul class="dropdown-menu">
+						<li><a href='/gmd/ccgg/data-products.html'>Products and Data Overview</a></li>
+						<li><a href='/gmd/ccgg/carbontracker/'>CarbonTracker</a></li>
+						<li><a href='/gmd/ccgg/carbontracker-ch4/'>CarbonTracker CH<sub>4</sub></a></li>
+						<li><a href='/gmd/ccgg/carbontracker-lagrange/'>CarbonTracker Lagrange</a></li>
+						<li><a href="/gmd/ccgg/trends/">Current Trends in CO<sub>2</sub></a></li>
+						<li><a href="/gmd/ccgg/trends_ch4/">Current Trends in CH<sub>4</sub>, N<sub>2</sub>O, SF<sub>6</sub></a></li>
+						<li><a href='/gmd/ccgg/obspack/'><b>Obs</b>ervation <b>Pack</b>age</a></li>
+						<li><a href='/gmd/ccgg/d13C-src-inv/'>&delta;<sup>13</sup>C CH4 source inventory</a></li>
+						<li><a href='/gmd/ccgg/mbl/'>Marine Boundary Layer Reference</a></li>
+						<li><a href='/gmd/ccgg/aggi.html'>Annual Greenhouse Gas Index</a></li>
+						<li><hr></li>
+						<li><a href="/gmd/dv/iadv/">Data Visualization</a></li>
+						<li><a href="/gmd/dv/data/">Search for Datasets</a></li>
+						<li><a href='ftp://aftp.cmdl.noaa.gov/data/greenhouse_gases/'>Data Archive</a></li>
+						<li><a href='/gmd/ccgg/gallery/figures/'>Figures</a></li>
+						<li><a href="/gmd/ccgg/data.html">Data Policy</a></li>
+						<li><hr></li>
+						<li><a href="/gmd/ccl/">Reference Gas Calibrations</a></li>
+						<li><a href="/gmd/ccgg/wmorr/">WMO Standard Gas Comparisons</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
+					 <ul class="dropdown-menu pull-right">
+						<li><a href="/gmd/ccgg/info.html">Information</a></li>
+						<li><a href="/gmd/ccgg/news.php">News</a></li>
+						<li><a href="/gmd/ccgg/newsletters/">Flask Sampling Newsletters</a></li>
+						<li><a href="/gmd/ccgg/gallery/">Photo Gallery</a></li>
+						<li><a href="/gmd/ccgg/about/co2_measurements.html">How CO<sub>2</sub> is Measured</a></li>
+						<li><a href="/gmd/ccgg/about/global_means.html">Computation of Global Means</a></li>
+						<li><a href="/gmd/ccgg/mbl/crvfit/crvfit.html">Curve Fitting Methods</a></li>
+						<li><a href="/gmd/ccgg/basics.html">Basics of the Carbon Cycle</a></li>
+						<li><a href="/gmd/ccgg/behind_the_scenes/">Measuring Greenhouse Gases</a></li>
+						<li><a href="/gmd/ccgg/isotopes/">About Isotope Measurements</a></li>
+						<li><a href='/gmd/ccgg/faq_cat-3.html'>Carbon Cycle FAQ</a></li>
+						<li><a href='/gmd/ccgg/CCGGhandout.pdf' class='pdf'>Reference Network Brochure</a></li>
+						<li><a href='http://instaar.colorado.edu/research/labs-groups/stable-isotope-laboratory/' class='external'>Isotope Measurements</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+
+
+
+
+
+<div class="article">
+
+<!--<div class="pageheader">How we measure background CO<sub>2</sub> levels on Mauna Loa.</div>-->
+<h3>How we measure background CO<sub>2</sub> levels on Mauna Loa.</h3>
+<p class="italic small gray">
+Pieter Tans and Kirk Thoning, NOAA Earth System Research Laboratory,<br>
+Boulder, Colorado<br>
+September, 2008. Updated December, 2016; March 2018
+</p>
+<div class="xsmall">
+<a href="co2_measurements.pdf"><img src="pdf.png" alt=""> PDF version</a>
+</div>
+
+<a id="summary"></a>
+<h3>Summary</h3>
+<p>
+	We have confidence that the CO<sub>2</sub> measurements made at the Mauna Loa Observatory reflect truth about our global atmosphere.  The main reasons for that confidence are:
+</p>
+<ol>
+<li>
+	The Observatory near the summit of Mauna Loa, at an altitude of 3400 m, is well situated to measure air masses that are representative of very large areas.
+</li>
+<li>
+	All of the measurements are rigorously and very frequently calibrated.
+</li>
+<li>
+	Ongoing comparisons of independent measurements at the same site allow an estimate of the accuracy, which is generally better than 0.2 ppm.
+</li>
+</ol>
+
+<a id="infrared"></a>
+<h3>Infrared absorption.</h3>
+
+<h5> <i>How does the CO<sub>2</sub> analyzer work?</i> </h5>
+<p>
+	 Air is slowly pumped through a small cylindrical cell with flat windows on both ends.  Infrared light is transmitted through one window, through the cell, through the second window, and is measured by a detector that is sensitive to infrared radiation.  In the atmosphere carbon dioxide absorbs infrared radiation, contributing to warming of the earth surface.  Also in the cell CO<sub>2</sub> absorbs infrared light.  More CO<sub>2</sub> in the cell causes more absorption, leaving less light to hit the detector.  We turn the detector signal, which is registered in volts, into a measure of the amount of CO<sub>2</sub> in the cell through extensive and automated (always ongoing) calibration procedures.  
+
+</p>
+
+<p></p>
+<a id="molefraction"></a>
+<h3>Mole fraction in dry air</h3>
+<h5><i>What do we need to measure?</i>  </h5>
+<p>
+	Most people assume that we measure the concentration of CO<sub>2</sub> in air, and in communicating with the general public we frequently use that word because it is familiar.  The quantity we actually determine is accurately described by the chemical term &ldquo;mole fraction&rdquo;, defined as the number of carbon dioxide molecules in a given number of molecules of air, after removal of water vapor.  For example, 372 parts per million of CO<sub>2</sub> (abbreviated as ppm) means that in every million molecules of (dry) air there are on average 372 CO<sub>2</sub> molecules. The table below gives an example for 372 ppm CO<sub>2</sub> in dry air (this is roughly the average amount of CO<sub>2</sub> in the atmosphere in the beginning of the year 2002).  All species have been expressed as ppm, turning 78.09% nitrogen into 780,900 ppm.  The rightmost column shows the composition of the same air after 3% water vapor has been added:
+</p>
+
+<table class='table table-striped table-bordered'>
+<tr>
+<th></th><th>dry air</th><th>3% wet air</th>
+</tr>
+<tr>
+<td> Nitrogen</td><td>780,900</td><td> 757,473  ppm</td>
+</tr>
+<tr>
+<td>Oxygen</td><td>209,400</td><td> 203,118</td>
+</tr>
+<tr>
+<td>Water vapor</td><td> 0</td><td> 30,000</td>
+</tr>
+<tr>
+<td>Argon</td><td> 9,300</td><td> 9,021</td>
+</tr>
+<tr>
+<td>Carbon Dioxide</td><td> 372</td><td> 360.8</td>
+</tr>
+<tr>
+<td>Neon</td><td> 18</td><td> 17.5</td>
+</tr>
+<tr>
+<td>Helium</td><td> 5</td><td> 4.9</td>
+</tr>
+<tr>
+<td>Methane</td><td> 2</td><td> 2</td>
+</tr>
+<tr>
+<td>Krypton</td><td> 1</td><td> 1</td>
+<tr>
+<td>trace species (each less than 1)</td><td> 1</td><td> 1</td>
+</tr>
+<tr>
+<td align='right'>Total</td><td>1,000,000</td><td>1,000,000 ppm</td>
+</tr>
+
+
+
+</table>
+
+<h5><i>Why do we express the abundance of CO<sub>2</sub> as a mole fraction in dry air?</i></h5>
+<p>
+ The concentration of a gas is defined formally as the number of molecules per cubic meter.  The goal of our measurements is to quantify how much CO<sub>2</sub> has been added to, or removed from, the atmosphere.  The concentration does not give us that information because it primarily depends on the pressure and temperature, and secondarily on how much the relative abundance of each gas has been diluted by water vapor, which is extremely variable.  Only the dry mole fraction reflects the addition and removal of a gas species because its mole fraction in dry air does not change when the air expands upon heating or upon ascending to higher altitude where the pressure is lower.  Nor does it change when water evaporates, or condenses into droplets.  Why is this so important? Here is an example: The amount of CO<sub>2</sub> is higher in the Northern than in the Southern Hemisphere as a result of the combustion of coal, oil, and natural gas.  The measurement of this difference gives us crucial quantitative information about the emissions and removals of CO<sub>2</sub>.  The concentration change produced by the addition of water vapor can be greater than the CO<sub>2</sub> difference between the two hemispheres.  In contrast, the difference in dry mole fraction does reflect the differences in emissions and removals between the hemispheres.  
+</p>
+
+<p>
+One often encounters in the literature the term &ldquo;mixing ratio&rdquo;. This is ambiguous. Does it apply to mass or to the numbers of molecules? In an attempt to clear that up one also often finds &ldquo;mixing ratio by volume&rdquo;, abbreviated as &ldquo;ppmv&rdquo; for CO<sub>2</sub>. However, that can still be ambiguous. Does it mean partial molar volume of CO<sub>2</sub> relative to molar volume of whole air? That would only be correct if all the constituent gases of air behaved as ideal gases, which we know is not true. Furthermore, the calibration standards used for greenhouse gases in air are made as, and expressed as, mole fractions in (dry) air. All national metrology institutes, with NOAA/ESRL representing the WMO Global Atmosphere Watch community (see  <a href="/gmd/ccl/">www.esrl.noaa.gov/gmd/ccl/</a> ), participate in comparisons of reference gas standards that are called &ldquo;Key Comparisons of Amount of Substance Ratios&rdquo;. The unit of &ldquo;amount of substance&rdquo; is the mole.
+</p>
+
+
+<h3>Data Availability</h3>
+</p>
+The CO<sub>2</sub> data that is described on this page is available at the <a href="/gmd/dv/data/?parameter_name=Carbon%2BDioxide&type=Insitu">GMD Data Finder</a>, where data options have been filtered to show CO<sub>2</sub> data from all of the GMD Observatories (In addition to Mauna Loa, Barrow Alaska, American Samoa and South Pole are included).  Data is available as hourly, daily and monthly averages.
+</p>
+
+<p></p>
+<a id="instrument"></a>
+<h3>Calibration of the instrument.</h3>
+<p>
+The most important aspect of the measurements is the ongoing calibrations.  Air flows continually through the instrument, after having first been dried in a cold trap where the water vapor freezes out as ice on the walls. Unfortunately, the absorption that we measure in the cell does not depend on the CO<sub>2</sub> mole fraction, but on the total amount of CO<sub>2</sub> in the cell.  Therefore, we either have to extremely accurately control the temperature and pressure in the cell, as well as the flow rate, or we can control them less accurately while using frequent calibrations of the instrument with reference gas mixtures of CO<sub>2</sub>-in-dry-air spanning the expected range of the measurements.  The reference gas mixtures are stored in high pressure aluminum cylinders.  At Mauna Loa the calibration is done every hour by interrupting the flow of outside air through the cell, and replacing it with flows of three reference gas mixtures in succession, 5 minutes each.  An example is shown in Figure 1.  Each hour is divided up as follows: 
+</p>
+
+<div class="image-caption">
+	<a href="co2_fig1.png"><img class="img-responsive img-thumbnail" src="co2_fig1.png" alt="Figure 1"></a>
+	<div class="caption">
+		Figure 1.  Voltage output from the Mauna Loa CO<sub>2</sub>analyzer for November 17, 2006.  The analyzer measures an hourly cycle of ambient air and three standard reference gases with known amounts of CO<sub>2</sub>.
+	</div>
+</div>
+
+<ul>
+<li> minute 0 through 24:  air intake line 1  (last 20 minutes is used)</li>
+<li> minute 25-44: air intake line 2  (20 minutes used) </li>
+<li> minute 45-49: high reference gas, which we call W3 (last 2 minutes is used)</li>
+<li> minute 50-54: middle reference gas (W2) (last 2 minutes is used)</li>
+<li> minute 55-59: low reference gas (W1) (last 2 minutes is used)</li>
+</ul>
+<p>
+We know the mole fractions of CO<sub>2</sub> in the reference gases very accurately.  In this case they were 370.50 ppm (W1), 379.93 (W2), and 389.72 (W3).  For each of these three we register a voltage, which establishes a relationship between voltage and CO<sub>2</sub> mole fraction. The relationship is not linear because the sensitivity of the detector decreases at higher CO<sub>2</sub> abundance, although the effect is not strong in the small range measured at Mauna Loa.  We fit a quadratic function through the three points to provide a CO<sub>2</sub> mole fraction number for every voltage in the range shown in Figure 1, from ~1.4 to ~2.3 volt.  After each gas switch the first few minutes are ignored to eliminate switching transients.  For example, the flow rate is 100 cc per minute, and it takes time for the previous air to be fully replaced with new air, and for the walls of the tubes, valves, and cell to equilibrate with the new mole fraction.  During minutes 0 through 44 we use two separate air intake lines in succession, both from the top of a 38 m tall tower next to the observatory, to facilitate detection of a potential leak between in the intake lines bewteen the tower and the instrument.  The tower was built to eliminate any influence on the measurements of human activities at the observatory. 
+</p>
+
+<p></p>
+<a id="target"></a>
+<h3>Target gas.</h3>
+<p>
+The calibration strategy outlined above can be applied, with appropriate variations, to any separation/detection method, whether it is infrared absorption, gas chromatography, mass spectrometry, etc. Therefore the choice of measurement method is mostly one of convenience.  The measurement results do depend very strongly on the control of the reference gas mixtures.  If one of them has the wrong value, all results will be off.  We provide for a check on the assigned values of the calibration mixtures by running what we call a &ldquo;target gas&rdquo;, treated as having an unknown mole fraction, every 25 hours through the measurement system.  In reality the mole fraction of the target gas is very accurately known.  
+</p>
+
+<p>
+If one of the calibration gases has a wrongly assigned value the measurement of the target gas will produce the wrong result.  An example of a daily target measurement is shown in Figure 2 where, during hour 21, the analyzer alternates between the three calibration gases and the target gas.  The target gas has low mole fraction in this case, registering at ~1.3 volts.  The repeat cycle of every 25 hours causes the target measurement to slowly move through the diurnal cycle because every day it is measured one hour later than on the previous day.   
+</p>
+
+<div class="image-caption">
+	<a href="voltages.png"><img class="img-responsive img-thumbnail" src="voltages.png" alt="Voltages"></a>
+	<div class="caption">
+		Figure 2.  Voltage output from the Mauna Loa CO<sub>2</sub> analyzer for November 17 and 18, 2006.  The 'target gas' is being measured during hour 21 on the 17<sup>th</sup>, and during hour 22 on the 18<sup>th</sup>.  The different colors represent data that has been marked by the data selection criteria.
+	</div>
+</div>
+
+<p></p>
+<a id="data_selection"></a>
+<h3>Data selection for background air.</h3>
+<p>
+In 1957 Dave Keeling, who was the first to make accurate measurements of CO<sub>2</sub> in the atmosphere, chose the site high up on the slopes of the Mauna Loa volcano because he wanted to measure CO<sub>2</sub> in air masses that would be representative of much of the Northern Hemisphere, and, hopefully, the globe.  That goal has not changed.  We still want to eliminate the influence of CO<sub>2</sub> absorbed or emitted locally by plants and soils, or emitted locally by human activities.  Dave Keeling also introduced the principle of a rigorous calibration strategy that we still employ today.
+<p>
+The observatory is surrounded by many miles of bare lava, without any vegetation or soil.  This provides an opportunity to measure &ldquo;background&rdquo; air, also called &ldquo;baseline&rdquo;&rdquo; air, which we define as having a CO<sub>2</sub> mole fraction representative of an upwind fetch of hundreds of km.  Nearby emission or removal of CO<sub>2</sub> typically produces sharp fluctuations, in space and time, in mole fraction.  These fluctuations get smoothed out with time and distance through turbulent mixing and wind shear.  A distinguishing characteristic of background air is that CO<sub>2</sub> changes only very gradually because the air has been mixed for days, without any significant additions or removals of CO<sub>2</sub>.  Another common word for emissions is &ldquo;sources&rdquo;, and for removals, &ldquo;sinks&rdquo;.  
+</p>
+<p>
+Figure 2 shows an example of the data selection procedures we use to categorize air that has likely been influenced significantly by nearby sources/sinks.  The plot is for two days, November 17 and 18, 2006.  First the time axis needs to be explained.  The bottom axis of Figure 2 reflects that we keep date and time at the Mauna Loa Observatory in Universal Coordinated Time, abbreviated as UTC.  UTC is the same across the entire world.  It succeeded Greenwich Mean Time in 1961, and is widely used and unambiguous.  Local time in Hawaii lags UTC by 10 hours, so that 10 am UTC corresponds to midnight locally.  The upper axis has labels indicating the local time in Hawaii.  
+</p>
+
+<p>
+At Mauna Loa we use the following data selection criteria:
+<ol>
+<li>
+<p>
+The standard deviation of 10-second averages should be less than 0.30 ppm within a given hour.  A standard deviation larger than 0.30 ppm is indicated by a &ldquo;V&rdquo; flag in the hourly data file, and by the red color in Figure 2. 
+</p>
+</li>
+
+<li>
+<p>
+There is often a diurnal wind flow pattern on Mauna Loa driven by warming of the surface during the day and cooling during the night.  During the day warm air flows up the slope, typically reaching the observatory at 9 am local time (19 UTC) or later.  The upslope air may have CO<sub>2</sub> that has been lowered by plants removing CO<sub>2</sub> through photosynthesis at lower elevations on the island, although the CO<sub>2</sub> decrease arrives later than the change in wind direction, because the observatory is surrounded by miles of bare lava.  
+Upslope winds can persist through ~7 pm local time (5 UTC, next day, or local hour 19 in Figure 2).  
+
+Hours that are likely affected by local photosynthesis (11am to 7pm local time, 21 to 5 UTC) are indicated by a &ldquo;U&rdquo; flag in the hourly data file, and by the blue color in Figure 2.
+</p>
+
+<p>
+At night the flow is often downslope, bringing background air.  However, that air is sometimes contaminated by CO<sub>2</sub> emissions from the crater of Mauna Loa.  As the air meanders down the slope that situation is characterized by high variability of the CO<sub>2</sub> mole fraction.  In Figure 2, downslope winds resumed on November 18 at hour 5 UTC.  Hour 9 UTC on the 18<sup>th</sup> in Figure 2 is the first of an episode of high variability lasting 7 hours. 
+</p>
+</li>
+<li>
+<p>
+In keeping with the requirement that CO<sub>2</sub> in background air should be steady, we expect the hourly average from one hour to the next should not differ from the preceding hour by more than a small amount.  Data where this  hour-to-hour change exceeds 0.25 ppm is indicated by a 'D' flag in the hourly data file, and by the green color in Figure 2.  However, if there are 3 consecutive non-flagged hours that either preceed or follow an hour with a 'D' flag, then the 'D' flag is removed.  This handles a 'step' change in CO<sub>2</sub> concentration, where the edges of the step agree with surrounding hours, but not with the single adjacent hour.
+</p>
+</li>
+<li>
+<p>
+After the application of the 'V', 'U' and 'D' flags, there can be times when a single hour remains unflagged, but is bracketed by flagged data. This makes it unclear if this single hour could be representative of background air or not. We therefore apply a 'S' flag to these single hours. Hour 14 UTC on November 18 in Figure 2 is an example of this. Similarly, a pair of hourly data could be bracketed by flagged data. As a final step, we check if there are any unflagged data within &plusmn; 8 hours of an hourly average, ignoring adjacent hours.  If not, then that hour is given a 'N' flag.
+</p>
+</li>
+
+</ol>
+
+<p>
+Hours for which we do not have valid air measurement are flagged with either a '*' or 'I' character in the hourly data file.  The hours during which we do a target gas measurement are an example, but there are also other instrumental causes, such as mechanical problems with pumps and valves.
+</p>
+
+<p>
+The frequency for each of these flags for a typical year (2014) is shown in Table 1.
+</p>
+
+<h4>Table 1. Number of hours in 2014 for each flag that was applied to the data.</h4>
+<table class="table table-bordered">
+    <tr>
+        <th>Flag</th>
+        <th>Number of Hours</th>
+        <th>Percentage of year<sup>*</sup></th>
+    </tr>
+    <tr>
+	<td>No flag</td><td>3323</td><td>37.9%</td>
+    </tr>
+    <tr>
+	<td>V</td><td>578</td><td>6.6%</td>
+    </tr>
+    <tr>
+	<td>U</td><td>2680</td><td>30.6%</td>
+    </tr>
+    <tr>
+	<td>D</td><td>1063</td><td>12.1%</td>
+    </tr>
+    <tr>
+	<td>S</td><td>232</td><td>2.6%</td>
+    </tr>
+    <tr>
+	<td>N</td><td>34</td><td>0.4%</td>
+    </tr>
+    <tr>
+	<td>* or I</td><td>858</td><td>9.8%</td>
+    </tr>
+<tr>
+<td colspan=3>
+<span class="small italic">
+<sup>*</sup>There are 8760 hours in the year.
+</span>
+</td>
+</tr>
+</table>
+
+
+<p>
+	Hourly means are calculated wherever possible, and how we use that data is indicated by the selection flags.  No data are thrown away. The hourly averages are calculated from the 'raw' data, which are the voltages recorded for the air measurements as well as for the reference gas mixtures used for calibration and for the target gas.
+</p>
+
+<p>
+	On average over the entire record there are 9.0 retained hours per day with background CO<sub>2</sub> mole fractions.  Because of the upslope wind condition flag 'U', there is only a maximum of 15 hours per day of background values possible.  Figure 3 show a plot of the CO<sub>2</sub> data for 2014 for each flag type.  Even though the data selection method identifies background data properly most of the time, there can still be conditions where the applied selection flag is not approriate.  The user of the data should be aware of this and modify the selection as needed.
+</p>
+
+<div class="image-caption">
+	<a href="mlo_by_flag_2014.png"><img src="mlo_by_flag_2014.png" class="img-responsive img-thumbnail" alt="Figure 3"></a>
+	<div class="caption">
+		Figure 3.  Plot of data with the different selection flags for a typical year (2014).
+	</div>
+</div>
+
+<p></p>
+<a id="auxiliary_variables"></a>
+<h3>Auxiliary measured variables</h3>
+<p>
+	System status variables measured and continuously recorded are: analyzer temperature, cold trap temperature, room temperature, sample flow rate, and both pressure and flow rate through both air intake lines from the tower.
+
+<p></p>
+<a id="calibration"></a>
+<h3>How we calibrate the reference gases.</h3>
+<p>
+	Since 1995 our laboratory has been the CO<sub>2</sub> <a href="/gmd/ccl">Central Calibration Laboratory of the World Meteorological Organization (WMO)</a>.  Before 1995 that role was filled by the Scripps Institution of Oceanography of the University of California in San Diego.  We maintain the WMO Mole Fraction Scale for CO<sub>2</sub>-in-air.  The WMO Scale is based on 15 so-called Primary Standards that are calibrated in terms of fundamental quantities at intervals of ~1.5 year by manometric measurements.  They have CO<sub>2</sub> mole fractions that span the range of ambient air.  The primaries are stored in high pressure aluminum cylinders.  The Primary Standards themselves are only sparingly used, so that we can build up a calibration history for each of them over several decades.  
+</p>
+
+<p>
+During a calibration episode, lasting 2-3 months, each Primary is measured three times.  Each time a sample of air is taken from the cylinder and its pressure and temperature inside a closed volume are measured very accurately, after temperature and pressure have stabilized in a temperature controlled environment.  The volume of approximately 6 liters is accurately known.  Once the pressure, temperature, and volume of a gas are known, the amount of gas can be calculated, taking the temperature dependent compressibility of the gases into account.  Then the air, with the CO<sub>2</sub> that is to be determined still in it, is slowly and completely flowed at low pressure over a cold trap cooled with liquid nitrogen.  The condensate in the cold trap consists of carbon dioxide, nitrous oxide, and residual water vapor.  The latter is low, corresponding to 1 ppm or so in the dry high pressure cylinder.  After separation of the water vapor component, the carbon dioxide and nitrous oxide are transferred to a small volume, about 10 cc, which has also been very accurately calibrated.  After stabilization, the pressure and temperature are once again recorded, and total amount of the two remaining gases calculated.  At that point we have determined the combined mole fraction of carbon dioxide and nitrous oxide in the cylinder air.  The latter typically comprises less than one thousandth of the total, and we correct for its contribution after measuring nitrous oxide separately on a gas chromatograph.  
+</p>
+<p>
+	The accuracy of the WMO Scale has been estimated, based on the accuracy of the temperature, volume and pressure measurement, and the gas handling procedures, at 0.07 ppm.  It has been compared several times to calibration scales established independently by other laboratories that were based on weighing a small amount of pure carbon dioxide that was then mixed into a large, also accurately weighed, amount of carbon dioxide-free air.  We have also compared to the previous WMO Scale maintained by Scripps.  These comparisons are compatible with our internal accuracy estimate. 
+</p>
+<p>
+The manometric calibrations are a very time consuming process, while we need to calibrate thousands of cylinders, many of which are used by other laboratories around the world.  We transfer, or propagate, the WMO scale to other high pressure cylinders of CO<sub>2</sub>-in-air in a much more efficient way, by comparing them to each other on an infrared gas analyzer system.  This is very similar to how we measure outside air by comparing the voltage response of unknown air to the response of air with known mole fractions.  The repeatability of these transfer calibrations, done one week or more apart, is typically 0.01-0.02 ppm in the range of ambient air. The sequence is similar to that of target gas calibrations at the field observatories where all cylinders are measured repeatedly, one after the other, with the known gases interspersed between the unknown gases.  Because we want to use the Primary Standards sparingly, we transfer the scale twice per year through these comparisons to Secondary Standards, which in turn get used to calibrate all other reference gases.  The Secondaries typically last for 3-5 years.
+</p>
+<p>
+	An important aspect of the calibration strategy is that reference gas mixtures are not only calibrated before use, but also after their use when the pressure is low, but not close to zero.  Reference gas mixtures are recalled for recalibration when ~20% of the air is still in the cylinder because experience has shown that the CO<sub>2</sub> mole fraction tends to drift more when the pressure becomes low.  Because the raw data consists of voltages, it is possible to re-calculate corrected mole fractions for the measured atmospheric air after it has become clear through recalibration that a particular reference gas has drifted.  Fortunately this problem greatly diminished when we made the switch from using steel cylinders to aluminum cylinders.
+</p>
+
+
+<p></p>
+<a id="replication"></a>
+<h3> Replication of the field measurements</h3>
+<p>
+	We know from experience that careful calibration is necessary, but not sufficient, for making accurate measurements.  There are many potential biases related to gas handling, drying, that are not covered through the calibration.  The ultimate test of how accurate these measurements are likely to be is to compare them with other measurements, done independently, with different methods, and/or by different laboratories.  At Mauna Loa we have both.  In Figure 4 we show a comparison with two sets of grab samples of air in glass flasks, done weekly in pairs.  One set, called &ldquo;S&rdquo;, are samples taken through the intake line used by the continuous analyzer, and diverted just before entering the analyzer.  The second set, called &ldquo;P&rdquo;, are completely independent from the continuous analyzer system.  They are taken with a battery operated pump, and extendable air intake mast, at a spot on the roof of one of the observatory buildings.  The flask samples are sent to our laboratory in Boulder, Colorado, where they are analyzed together with thousands of other air samples from all over the world.  There is a fair amount of &ldquo;scatter&rdquo; in the comparisons, partly because we are comparing a spot sample, a ~20 s average, to the hourly average of the continuous analyzer when the sample was taken.  On average, the &ldquo;P&rdquo; flasks differ from the continuous analyzer by 0.11 ppm, and the &ldquo;S&rdquo; flasks by 0.05 ppm.  Important are systematic biases that persist over a good part of a year and more, portrayed by the solid smooth lines fitted to the respective data sets.  One can see that most of the time the biases are less than 0.2 ppm.  
+
+<div class="image-caption">
+	<a href="co2_fig4.png"><img src="co2_fig4_med.png" class="img-responsive img-thumbnail" alt="Figure 4"></a>
+	<div class="caption">
+		Figure 4.  The figure shows differences between grab samples of air in glass flasks, and the corresponding hourly mean CO<sub>2</sub> value from the Mauna Loa in-situ analyzer.  There are two types of flask samples, the 'P' type collected using an independent flask sampling package (green pluses), and the 'S' type, collected using the in-situ analyzer air intake lines (black diamonds).
+	</div>
+</div>
+
+<p>
+We have a similar comparison with the CO<sub>2</sub> measurements performed by the Scripps Institution of Oceanography, the program started by David Keeling.  They have always maintained their own manometric calibration scale, they use a different analyzer system, and their data selection techniques for selecting background air are different from, and independent of, our methods.  They also compare on a regular basis with their own grab samples.  A comparison of the Scripps monthly mean CO<sub>2</sub> data (obtainable from <a href="http://cdiac.ornl.gov/trends/co2/sio-mlo.html">http://cdiac.ornl.gov/trends/co2/sio-mlo.html</a>) shows that the average difference during 1974-2004 between the Scripps and our monthly means is 0.04 ppm, and that the standard deviation of the annual mean differences is 0.12 ppm.     
+<p>
+	The above comparisons give us confidence that the CO<sub>2</sub> measurements are generally accurate to better than 0.2 ppm.
+
+<p>
+<a id="variations"></a>
+<h3>Observed variations of CO<sub>2</sub> in the atmosphere.</h3>
+<p>
+We present two typical examples of measured CO<sub>2</sub> mole fractions over the continent, to demonstrate what an excellent choice Mauna Loa is for making background measurements.  Figure 5a shows one week in July 1999 of CO<sub>2</sub> measurements made on a tall TV antenna in a forested area in Northern Wisconsin.  Again, the time is recorded as UTC.  
+
+<div class="image-caption">
+	<a href="co2_fig5a.png"><img src="co2_fig5a_med.png" class="img-responsive img-thumbnail" alt="Figure 5a"></a>
+	<div class="caption">
+		Figure 5a.  Measurements of CO<sub>2</sub> by a continuous in-situ analyzer at a tall tower during the summer in northern Wisconsin.  The top plot show the CO<sub>2</sub> values at six different heights on the tower. 
+	</div>
+</div>
+
+<p>
+In Wisconsin the local time is lagging UTC by 6 hours. The measurements are made at six height levels on the tower, from 11 m to 396 m above the ground.  Near the ground there is a very large diurnal cycle which decreases with altitude.  At sunset, when photosynthesis shuts down, the CO<sub>2</sub> mole fraction shoots up, especially at the lowest levels, because plants and soils keep respiring during day and night, releasing CO<sub>2</sub>.  Sunset occurs at around 1 am UTC, which equals 7 pm local time of the previous day at the tower.  During the day photosynthesis is stronger than respiration, causing net removal of CO<sub>2</sub> from the atmosphere, and the CO<sub>2</sub> gradient along the height of the tower reverses.  Now the 11 m level near the ground has the lowest CO<sub>2</sub> mole fraction.  The mole fraction differences between the levels are very small during the day because the air is vigorously mixed, typically up to altitudes of 1-2 km.  During the night the ground cools and the atmosphere becomes stable, with little vertical mixing because the coldest (densest) air is near the ground.  The respired CO<sub>2</sub> is trapped in the stable boundary layer near the ground, which may have a thickness of only tens of meters.  The buildup of respiratory CO<sub>2</sub> near the ground is more strongly dependent on the atmospheric stability, driven by the weather, than on the rate of respiration.  It is more difficult to quantify emissions/removals of CO<sub>2</sub> over the continent than at background sites like Mauna Loa that average over very large areas.  Figure 5a also shows slow variations of CO<sub>2</sub> on the time scale of weather systems, several days to a week, with the wind bringing air masses from different directions.   
+<p>
+Figure 5b presents one week in January which portrays a typical situation in the winter.  There are no strong sources/sinks of CO<sub>2</sub> in the vicinity of the tower, because we see fairly uniform mole fractions along the height of the tower.  The variations on the time scale of weather systems remain, due to sources/sinks far away from the tower.
+
+<div class="image-caption">
+	<a href="co2_fig5b.png"><img src="co2_fig5b_med.png" class="img-responsive img-thumbnail" alt="Figure 5b"></a>
+	<div class="caption">
+		Figure 5b.  Measurements of CO<sub>2</sub> by a continuous in-situ analyzer at a tall tower during the winter in northern Wisconsin.
+	</div>
+</div>
+
+<a id="reading"></a>
+<h3>Further reading:  </h3>
+<ul class="cite">
+<li>
+W.D. Komhyr, T.B. Harris, L.S. Waterman, J.F.S. Chin, and K.W. Thoning,
+<a href="/gmd/publications/showpub.php?pubid=2823">
+Atmospheric carbon dioxide at Mauna Loa Observatory:  1. NOAA GMCC measurements with a non-dispersive infrared analyzer, 
+</a>
+<i> Journal of Geophysical Research, </i>
+vol.94, 8533-8547 (20 June 1989).
+</li>
+
+<li>
+Kirk W. Thoning, Pieter P. Tans, Walter D. Komhyr,
+<a href="/gmd/publications/showpub.php?pubid=2828">
+Atmospheric carbon dioxide at Mauna Loa Observatory:  2. Analysis of the NOAA GMCC data 1974-1985, 
+</a>
+<i>Journal of Geophysical Research, </i>
+vol.94, 8549-8565 (20 June 1989).  
+</li>
+
+<li>
+Conglong Zhao and Pieter Tans,
+<a href="/gmd/publications/showpub.php?pubid=309">
+Estimating uncertainty of the WMO mole fraction scale for carbon dioxide in air, 
+</a>
+<i>Journal of Geophysical Research, </i>
+vol. 111, D08S09, doi: 10.1029/2005JD006003, 2006.
+</li>
+
+<li>
+C. Zhao, P. Tans, and K. Thoning,
+<a href="/gmd/publications/showpub.php?pubid=2602">
+A high precision manometric system for absolute calibration of CO<sub>2</sub> in dry air, 
+</a>
+<i>Journal of Geophysical Research,</i>
+ 102, 5885-5894, 1997.
+</li>
+</ul>
+
+
+
+<!--
+
+<div class="col-md-3 hidden-sm hidden-xs sidebar">
+
+<h4>Contents</h4>
+<ul>
+<li><a href="#summary">Summary</a><br>
+<li><a href="#infrared">Infrared absorption.</a><br>
+<li><a href="#molefraction">Mole fraction in dry air</a><br>
+<li><a href="#instrument">Calibration of the instrument.</a><br>
+<li><a href="#target">Target gas.</a><br>
+<li><a href="#data_selection">Data selection for background air.</a><br>
+<li><a href="#auxiliary_variables">Auxiliary measured variables</a><br>
+<li><a href="#calibration">How we calibrate the reference gases.</a><br>
+<li><a href="#replication">Replication of the field measurements</a><br>
+<li><a href="#variations">Observed variations of CO<sub>2</sub> in the atmosphere.</a><br>
+<li><a href="#reading">Further reading</a><br>
+</ul>
+
+
+</div>
+-->
+</div>
+
+
+    </div> <!-- end mainsection -->
+
+    <div id="footer" style="font-size: 100%;">
+
+	<div class="row">
+	    <div id="orgs" class="col-md-7">
+                <h4>
+		   <a href="http://www.noaa.gov/">National Oceanic and Atmospheric Administration</a> <br>
+		   <a href="/">Earth System Research Laboratory</a> <br>
+		   <a href="/gmd/">Global Monitoring Division</a>
+                </h4>
+	    </div>
+
+	    <div class="col-md-5" id="policies">
+              <p>
+		<a href="https://www.facebook.com/NOAAESRL" title="ESRL Facebook" aria-label="ESRL Facebook">&nbsp;<i class="fa fa-2x fa-facebook"></i></a>
+		<a href="https://twitter.com/NOAA_ESRL" title="ESRL Twitter" aria-label="ESRL Twitter"> <i class="fa fa-2x fa-twitter"></i></a>
+		<a href="https://www.youtube.com/user/NOAAESRL" title="ESRL Youtube Channel" aria-label="ESRL Youtube"> <i class="fa fa-2x fa-youtube"></i></a>
+		<a href="https://www.flickr.com/photos/noaa_esrl" title="ESRL Flickr" aria-label="ESRL Flickr"> <i class="fa fa-2x fa-flickr"></i></a>
+              </p>
+
+		<a href="/gmd/about/contacts.html">Contact Us</a> | 
+		<a href="mailto:webmaster.gmd&#64;noaa.gov">Webmaster</a> | 
+		<a href="/gmd/sitemap">Site Map</a>
+                <br>
+		<a href="http://www.noaa.gov/privacy.html">Privacy Policy</a> | 
+		<a href="https://www.esrl.noaa.gov/about/accessibility.html">Accessibility</a> | 
+		<a href="/gmd/about/disclaimer.html">Disclaimer</a> | 
+		<a href="https://www.usa.gov/">USA.gov</a>
+	    </div>
+	</div>
+
+
+    </div> <!-- end footer -->
+
+</div> <!-- end container -->
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"noaa_esrl_gmd" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "https://search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+//]]>
+</script>
+
+<script id="_fed_an_ua_tag" type="text/javascript" src="/gmd/js/federated-analytics.js?agency=DOC&sub­agency=NOAA&pua=UA-50368700-1"></script>
+
+
+
+
+</body>
+</html>
+

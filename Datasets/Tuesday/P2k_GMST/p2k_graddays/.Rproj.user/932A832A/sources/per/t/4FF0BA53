@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1557994812630.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2378211361",
+    "id" : "4FF0BA53",
+    "lastKnownWriteTime" : 1557997597,
+    "last_content_update" : 1557997597,
+    "path" : "~/R/spielwiese/pages2kgmst/published/Figs_gmst.R",
+    "project_path" : "Figs_gmst.R",
+    "properties" : {
+        "cursorPosition" : "17,0",
+        "scrollLine" : "2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

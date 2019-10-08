@@ -1,0 +1,628 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <meta name="DC.language" content="EN-US" >
+    <meta name="author" content="ESRL Web Team">
+    <meta name="DC.creator" content="US Department of Commerce, NOAA, Earth System Research Laboratory" >
+
+    
+    <meta name="DC.date.created"  content="2005-10-01" >
+    <meta name="DC.date.reviewed" content="2019-07-15" >
+
+
+    <meta name="keywords" content="carbon doxide, co2, co2 increase, carbon dioxide increase, global co2 increase, co2 trend, co2 growth rate, trends in carbon dioxide, global network, trends in co2, mauna loa, mauna loa co2, dave keeling, keeling, pieter tans, greenhouse gases, NOAA, CMDL, GMD">
+
+
+    <meta name="description" content="The NOAA Earth System Research Laboratory was formed to observe and understand the Earth system and to develop products, through a commitment to research that will advance the National Oceanic and Atmopsheric Administration's environmental information and services on global to local scales.">
+    <meta name="DC.description" content="The NOAA Earth System Research Laboratory was formed to observe and understand the Earth system and to develop products, through a commitment to research that will advance the National Oceanic and Atmopsheric Administration's environmental information and services on global to local scales." >
+
+
+
+
+    <title>ESRL Global Monitoring Division - Global Greenhouse Gas Reference Network</title>
+    <meta name="DC.title" content="ESRL Global Monitoring Division - Global Greenhouse Gas Reference Network" >
+
+
+
+
+    <!-- Bootstrap -->
+    <link href="/gmd/css/bootstrap.min.css" rel="stylesheet" media="all">
+<!--    <link href="/gmd/css/bootstrap-theme.css" rel="stylesheet" media="all">  -->
+    <link href="/gmd/css/bootstrap-local.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/header.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/major_nav.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/colors.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/style.css" rel="stylesheet" media="all">
+    <link href="/gmd/css/sidebar3.css" rel="stylesheet" media="all"> 
+    <link href="/gmd/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/gmd/js/html5shiv.js"></script>
+      <script src="/gmd/js/respond.js"></script>
+    <![endif]-->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--    <script src="//code.jquery.com/jquery.js"></script>  -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" ></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/gmd/js/bootstrap.min.js"></script>
+    <script src="/gmd/js/jquery.hoverIntent.minified.js"></script>
+    <script src="/gmd/js/bootstrap-hover-dropdown.js"></script>
+
+
+
+
+
+
+
+
+
+
+    <!-- page-specific header code -->
+    <link rel='alternate' type='application/rss+xml' title='ESRL Co2 Trends RSS Feed' href='/gmd/webdata/ccgg/trends/rss.xml' >
+
+
+
+  </head>
+  <body>
+
+
+    <div class="container">
+
+	<ol class="breadcrumb hidden-xs" id="minor_header">
+		<li><a href="https://www.commerce.gov/">U.S. Department of Commerce</a></li> 
+		<li><a href="http://www.noaa.gov/">National Oceanic &amp; Atmospheric Administration</a></li>
+		<li><a href="https://research.noaa.gov/">NOAA Research</a></li>
+	</ol>
+
+	<div id="major_header">
+
+		<div id="search" class="hidden-xs">
+			<form action="https://search.usa.gov/search" class="form-inline">
+				<input type="hidden" name="affiliate" value="noaa_esrl_gmd">
+				<input type="hidden" name="v:project" value="firstgov" >
+				<label for="query-field"> Search GMD:</label><br >
+				<div class="input-group">
+					<input type="text" name="query" id="query-field" autocomplete="off" class='form-control input-xs' placeholder="Search">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default btn-xs" aria-label="Search"><i class="fa fa-search"></i></button> 
+					</span>
+				</div>
+			</form>
+
+			<a href="https://www.esrl.noaa.gov/calendar/">Calendar</a>&nbsp;|&nbsp;
+			<a href="https://nsd.rdc.noaa.gov/nsd/pubsearch">People</a>&nbsp;|&nbsp;
+			<a href="/gmd/publications/">Publications</a>
+		</div>
+
+		<a href="http://www.noaa.gov"><img class="logo" src="/gmd/images/noaalogo2.png" alt="NOAA Logo"></a>
+		<div id="lab"><a href="https://www.esrl.noaa.gov">Earth System Research Laboratory</a></div> 
+		<div id="division"><a href="/gmd/">Global Monitoring Division</a></div>
+
+		<!-- force major_header height to include search div -->
+		<div class="clearfix"></div>
+
+	</div> <!-- end major_header -->
+
+
+	<nav class="navbar navbar-default">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".majornav">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/gmd/">Home</a> 
+
+  </div>
+
+  <div class="collapse navbar-collapse majornav">
+    <ul class="nav navbar-nav">
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">About <b class="caret"></b></a>
+		 <ul class="dropdown-menu">
+			<li><a href="/gmd/about/aboutgmd.html">About GMD</a></li>
+			<li><a href="/gmd/about/orgchart.html">Organization Chart</a></li>
+			<li><a href="/gmd/about/stafflist.html">Staff</a></li>
+			<li><a href="/gmd/about/stafflist_group.html">Staff by Group</a></li>
+			<li><a href="/gmd/about/contacts.html">Contacts</a></li>
+			<li><a href="/gmd/about/visiting.html">Visitor Information</a></li>
+			<li><a href="http://www.esrl.noaa.gov/about/jobs.html">Employment</a></li>
+			<li><a href="https://sites.google.com/a/noaa.gov/oar-esrl-gmd-intranet/">Intranet</a></li>
+		</ul>
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Research<b class="caret"></b></a>
+    
+		 <ul class="dropdown-menu">
+			<li><h4>Research Areas</h4></li>
+			<li><a href="/gmd/about/research.html">Overview</a></li>
+			<li><a href="/gmd/about/GMD_Research_Plan_2018-2022.pdf">GMD Research Plan <span class="fa fa-file-pdf-o"></span></a></li>
+			<li><a href="/gmd/about/theme1.html">Greenhouse Gases and Carbon Cycle</a></li>
+			<li><a href="/gmd/about/theme2.html">Surface Radiation, Clouds, and Aerosols</a></li>
+			<li><a href="/gmd/about/theme3.html">Stratospheric Ozone Recovery</a></li>
+			<li><a href="/gmd/ccl/">Central Calibration Laboratory</a></li>
+			<li><h4>Research Groups</h4></li>
+			<li><a href="/gmd/aero/">Aerosols</a></li>
+			<li><a href="/gmd/ccgg/">Greenhouse Gases</a></li>
+			<li><a href="/gmd/hats/">Halocarbons and Trace Gases</a></li>
+			<li><a href="/gmd/ozwv/">Ozone and Water Vapor</a></li>
+			<li><a href="/gmd/grad/">Global Radiation</a></li>
+		</ul>
+
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Data and Products<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><h4>Data</h4></li>
+			<li><a href="/gmd/dv/data/"><img src="/gmd/icons/magnifier.png" alt="">Search for Data</a></li>
+			<li><a href="/gmd/dv/ftpdata.html"><img src="/gmd/icons/database.png" alt="">Data Archive</a></li>
+			<li><a href="/gmd/dv/site/"><img src="/gmd/icons/world.png" alt="">Measurement Sites</a></li>
+
+			<li><h4>Tools</h4></li>
+			<li><a href="/gmd/dv/iadv/"><img src="/gmd/icons/chart_curve.png" alt="">Interactive Data Viewer</a></li>
+			<li><a href="/gmd/grad/solcalc/"><img src="/gmd/icons/weather_cloudy.png" alt="">Solar Calculator</a></li>
+			<li><h4>Products</h4></li>
+			<li><a href="/gmd/aggi/"><img src="/gmd/images/aggiicon.png" alt="">Greenhouse Gas Index</a></li>
+			<li><a href="/gmd/odgi/"><img src="/gmd/images/odgiicon.png" alt="">Ozone Depletion Index</a></li>
+			<li><a href="/gmd/ccgg/trends/"><img src="/gmd/images/trendsicon.png" alt="">Trends in CO<sub>2</sub></a></li>
+			<li><a href="/gmd/ccgg/trends_ch4/"><img src="/gmd/images/trendsicon.png" alt="">Trends in CH<sub>4</sub></a></li>
+			<li><a href="/gmd/ccgg/carbontracker/"><img src="/gmd/images/cticon.png" alt="">CarbonTracker</a></li>
+			<li><a href="/gmd/ccgg/obspack/"><img src="/gmd/icons/database.png" alt="">ObsPack</a></li>
+			<li><a href="/gmd/ccgg/globalview/"><img src="/gmd/images/gvicon.png" alt="">GLOBALVIEW</a></li>
+			<li><a href="/gmd/grad/snomelt.html"><img src="/gmd/icons/weather_snow.png" alt="">Barrow's Annual Snow Cycle</a></li>
+			<li><h4>Visualization</h4></li>
+			<li><a href="/gmd/dv/ozwv/">Ozone and Water Vapor</a></li>
+			<li><a href="/gmd/dv/rad/">Radiation</a></li>
+			<li><a href="/gmd/hats/data.html">Trace Gases</a></li>
+			<li><a href="/gmd/aero/net/">Aerosols</a></li>
+			<li><a href="/gmd/dv/spo_oz/">South Pole Ozone Hole</a></li>
+			<li><a href="/gmd/dv/"><small><em>&nbsp;More Options...</em></small></a></li>
+		</ul>
+	</li>
+
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Observatories<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><a href="/gmd/obop/"><img class='menuimage' src="/gmd/images/obsmapicon.png" alt="">Observatory Operations</a></li>
+			<li><a href="/gmd/obop/brw/"><img class='menuimage' src="/gmd/images/brwstation_small3.jpg" alt="">Barrow, Alaska</a></li>
+			<li><a href="/gmd/obop/mlo/"><img class='menuimage' src="/gmd/images/mlostation_small3.jpg" alt="">Mauna Loa, Hawaii</a></li>
+			<li><a href="/gmd/obop/smo/"><img class='menuimage' src="/gmd/images/smostation_small3.jpg" alt="">American Samoa</a></li>
+			<li><a href="/gmd/obop/spo/"><img class='menuimage' src="/gmd/images/spostation_small3.jpg" alt="">South Pole</a></li>
+			<li>-----------------------------</li>
+			<li><a href="/gmd/obop/spo/livecamera.html">South Pole Webcam</a></li>
+			<li><a href="/gmd/obop/mlo/livecam/livecam.html">Mauna Loa Webcams</a></li>
+			<li><a href="/gmd/obop/brw/livecamera.html">Barrow Webcam</a></li>
+
+		</ul>
+	</li>
+
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">News &amp; Events<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+			<li><a href="/gmd/news/">News</a></li>
+			<li><a href="/gmd/about/seminars.php">Seminars</a></li>
+			<li><a href="/gmd/review/">Global Monitoring Division Review</a></li>
+			<li><h4>Global Monitoring Annual Conference</h4>
+
+			<div class="menu_box">
+				<a href="/gmd/annualconference/" >
+				<div class="illustration">
+					<img src="/gmd/gmac/images/gmac_logo_vsmall.png" alt="GMAC">
+				</div>
+				<div class="menutext">
+					The 47<sup>th</sup> Global Monitoring Conference, May 21-22, 2019 in Boulder.
+				</div>
+				</a>
+			</div>
+		</ul>
+            
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Information<b class="caret"></b></a>
+    
+		<ul class="dropdown-menu">
+            
+			<li><a href="/gmd/education/"><img src="/gmd/icons/education.png" alt=""> Education/Outreach</a></li>
+			<li><a href="/gmd/publications/"><img src="/gmd/icons/page_white_stack.png" alt=""> Publications</a></li>
+			<li><a href="/gmd/education/faq_cat-1.html"><img src="/gmd/icons/question.png" alt=""> FAQ's</a></li>
+			<li><a href="/gmd/safety/"><img src="/gmd/icons/caution_radiation.png" alt=""> Safety Program</a></li>
+			<li><a href="/gmd/Photo_Gallery/"><img src="/gmd/icons/camera.png" alt=""> Photo Gallery</a></li>
+
+		</ul>
+	</li>
+
+    </ul>
+  </div>
+</nav>
+
+
+	<div id="mainsection">
+
+<!--	 -->
+
+	
+		<!-- minor navigation -->
+		
+<div class="row gggrn_header">
+
+	<div class="col-md-4">
+
+		<a class="media" href="/gmd/ccgg/">
+			<img src="/gmd/ccgg/gggrn_small.png" class="media-object pull-left" alt="GGRN">
+			<h4 class="media-heading">Global Greenhouse Gas Reference Network</h4> 
+		</a>
+	</div>
+
+	<div class="col-md-8">
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="btn btn-default navbar-toggle subnav-toggle" data-toggle="collapse" data-target="#ggrnnav">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse pull-right" data-role="navigation" id="ggrnnav">
+			<ul class="nav navbar-nav" id="subnav">
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference Network <b class="caret"></b></a>
+					 <ul class="dropdown-menu">
+						<li><a href='/gmd/ccgg/index.html'>Home</a></li>
+						<li><a href='/gmd/ccgg/about.html'>About the Reference Network</a></li>
+						<li><a href='/gmd/ccgg/ggrn.php'>Reference Network Sites</a></li>
+						<li><a href='/gmd/ccgg/flask.php'>Cooperative Sampling Network</a></li>
+						<li><a href='/gmd/ccgg/insitu/'>In-Situ Measurements</a></li>
+						<li><a href='/gmd/ccgg/aircraft/'>Aircraft Measurements</a></li>
+						<li><a href='/gmd/ccgg/aircore/'>AirCore Sampling System</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Data <b class="caret"></b></a>
+					 <ul class="dropdown-menu">
+						<li><a href='/gmd/ccgg/data-products.html'>Products and Data Overview</a></li>
+						<li><a href='/gmd/ccgg/carbontracker/'>CarbonTracker</a></li>
+						<li><a href='/gmd/ccgg/carbontracker-ch4/'>CarbonTracker CH<sub>4</sub></a></li>
+						<li><a href='/gmd/ccgg/carbontracker-lagrange/'>CarbonTracker Lagrange</a></li>
+						<li><a href="/gmd/ccgg/trends/">Current Trends in CO<sub>2</sub></a></li>
+						<li><a href="/gmd/ccgg/trends_ch4/">Current Trends in CH<sub>4</sub>, N<sub>2</sub>O, SF<sub>6</sub></a></li>
+						<li><a href='/gmd/ccgg/obspack/'><b>Obs</b>ervation <b>Pack</b>age</a></li>
+						<li><a href='/gmd/ccgg/d13C-src-inv/'>&delta;<sup>13</sup>C CH4 source inventory</a></li>
+						<li><a href='/gmd/ccgg/mbl/'>Marine Boundary Layer Reference</a></li>
+						<li><a href='/gmd/ccgg/aggi.html'>Annual Greenhouse Gas Index</a></li>
+						<li><hr></li>
+						<li><a href="/gmd/dv/iadv/">Data Visualization</a></li>
+						<li><a href="/gmd/dv/data/">Search for Datasets</a></li>
+						<li><a href='ftp://aftp.cmdl.noaa.gov/data/greenhouse_gases/'>Data Archive</a></li>
+						<li><a href='/gmd/ccgg/gallery/figures/'>Figures</a></li>
+						<li><a href="/gmd/ccgg/data.html">Data Policy</a></li>
+						<li><hr></li>
+						<li><a href="/gmd/ccl/">Reference Gas Calibrations</a></li>
+						<li><a href="/gmd/ccgg/wmorr/">WMO Standard Gas Comparisons</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Information <b class="caret"></b></a>
+					 <ul class="dropdown-menu pull-right">
+						<li><a href="/gmd/ccgg/info.html">Information</a></li>
+						<li><a href="/gmd/ccgg/news.php">News</a></li>
+						<li><a href="/gmd/ccgg/newsletters/">Flask Sampling Newsletters</a></li>
+						<li><a href="/gmd/ccgg/gallery/">Photo Gallery</a></li>
+						<li><a href="/gmd/ccgg/about/co2_measurements.html">How CO<sub>2</sub> is Measured</a></li>
+						<li><a href="/gmd/ccgg/about/global_means.html">Computation of Global Means</a></li>
+						<li><a href="/gmd/ccgg/mbl/crvfit/crvfit.html">Curve Fitting Methods</a></li>
+						<li><a href="/gmd/ccgg/basics.html">Basics of the Carbon Cycle</a></li>
+						<li><a href="/gmd/ccgg/behind_the_scenes/">Measuring Greenhouse Gases</a></li>
+						<li><a href="/gmd/ccgg/isotopes/">About Isotope Measurements</a></li>
+						<li><a href='/gmd/ccgg/faq_cat-3.html'>Carbon Cycle FAQ</a></li>
+						<li><a href='/gmd/ccgg/CCGGhandout.pdf' class='pdf'>Reference Network Brochure</a></li>
+						<li><a href='http://instaar.colorado.edu/research/labs-groups/stable-isotope-laboratory/' class='external'>Isotope Measurements</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+	
+
+
+
+
+<!--<link rel="alternate" type="application/rss+xml" title="ESRL Co2 Trends RSS Feed" href="/gmd/webdata/ccgg/trends/rss.xml" > -->
+
+<link media="all" href="style.css" type="text/css" rel="stylesheet">
+
+
+
+
+     
+     
+
+
+
+<ul class="nav trends-nav nav-justified">
+  <li class="active"><a href="/gmd/ccgg/trends">Trends in CO<sub>2</sub></a></li>
+  <li><a href="/gmd/ccgg/trends_ch4">Trends in CH<sub>4</sub></a></li>
+  <li><a href="/gmd/ccgg/trends_n2o">Trends in N<sub>2</sub>O</a></li>
+  <li><a href="/gmd/ccgg/trends_sf6">Trends in SF<sub>6</sub></a></li>
+</ul>
+
+
+
+
+<a href="/gmd/webdata/ccgg/trends/rss.xml" title="Subscribe to this feed"><img src="fRSS.png" class='pull-right' alt="RSS"></a>
+
+
+<h2 class="pageheader">Trends in Atmospheric Carbon Dioxide</h2>
+
+
+
+
+
+<h3>Change Log and Notes</h3>
+
+<p>
+<div class="itemlist">
+
+<ul>
+<li>
+	<h4>07 March 2018</h4>
+	<p>
+	<b>Global:</b>
+	The global CO<sub>2</sub> trends web page was changed from a single page to multiple pages accessed by different tabs.  We also added a new page called 'Recent trend' that shows an estimate of the global de-sesonalized trend, which is based on trend curves that were fit to CO<sub>2</sub> daily averaged data from the four ESRL/GMD baseline observatories.
+	</p>
+</li>
+
+<li>
+	<h4>06 January 2017</h4>
+	<p>
+	<b>Global:</b>
+	The global monthly mean values have been delayed by an additional month.  The amount of measurement data that we have globally from the previous month was often not enought to produce a reliable monthly mean.  We have delayed the monthly mean value by an additional month so that more data is available to create a more robust monthly mean.
+	</p>
+
+	<p>
+	<b>Mauna Loa:</b>
+	We have implemented a new data selection scheme for identifying background data for the years 1974-2014.  This means that monthly mean values may differ by small amounts, due to different number of hourly averages that are used to calculate daily averages, which are then used for calculating monthly averages.  See the web page <a href="/gmd/ccgg/about/co2_measurements.html">How we measure background CO2 levels on Mauna Loa</a> for a description of the data selection process.  Monthly means for 2015 and 2016 were not affected, because they already used the new selection scheme.
+	</p>
+</li>
+
+<li>
+	<h4>01 November 2015</h4>
+	<p>
+	<b>Global:</b>
+	The November 2015 trends update will include small changes in previously reported global monthly mean and annual increases. These changes, which are statistically insignificant, are due to a modification to the distribution of weights used to fit each weekly meridional distribution.  Values contributing to the weekly meridional distribution are extracted from the smooth curves fitted to the individual site records.
+	</p>
+
+	<p>
+	For more information, please visit the web page entitled "NOAA Greenhouse Gas Marine Boundary Layer Reference", Section 4 (Smoothing in latitude) at <a href="/gmd/ccgg/mbl/mbl.html">www.esrl.noaa.gov/gmd/ccgg/mbl/mbl.html.</a>
+	</p>
+</li>
+
+
+
+
+<li>
+	<h4>08 August 2012</h4>
+	<p>
+	<b>Global.</b>
+	We expanded the annual global growth rate estimates by adding the average of Mauna Loa and South Pole, as a more approximate version of the global trend, from 1958 through 1979. In this way one obtains consistent estimates, with different uncertainties for each year, for the entire period of direct high accuracy measurements of atmospheric CO2.  
+	</p>
+</li>
+
+
+<li>
+	<h4>05 October 2011</h4>
+
+	<p><b>Global and Mauna Loa.</b>
+	The individual measurements used to compute the globally averaged and Mauna Loa CO2 mole fraction and growth rates from 1980 to 2006 have all been recalculated to bring them into the WMO X2007 Mole Fraction Scale (X07).  The data since 2007 were already on the X07 scale.  WMO X2007 is based on repeated manometric measurements of the NOAA primary standards (Zhao et al. 2006) and comparison of those results to similar measurements made over a period of more than 10 years at Scripps Institution of Oceanography.  The difference between the X07 and the previous scales propagated by SIO and NOAA (X83, X87, etc.) is ~0.2 ppm (X07-previous) in the 1980s, decreasing to ~0.1 ppm in the late 1990s, and to 0.0 ppm by 2006.  The recalculation of individual measurements was accomplished by first determining the X07 values for the reference gases used to measure the air samples and then using those values with the raw data (NDIR voltages) to recompute mole fraction for each sample.  
+	</p>
+
+	<p>
+	<a href="/gmd/publications/showpub.php?pubid=309"><b>Zhao, C., and P.P. Tans (2006)</b></a>, Estimating uncertainty of the WMO Mole Fraction Scale for carbon dioxide in air, <i>J. Geophys. Res.</i> 111, D08S09, doi: 10.1029/2005JD006003.
+	</p>
+</li>
+
+<li>
+	<h4> 6 April 2011 </h4>
+
+	<p>
+	<b>Global.</b>
+	 We added uncertainty estimates to the global CO2 growth rate values for individual years.  
+	The uncertainties are based on a bootstrap method as described on the Global Trends page.
+	</p>
+
+</li>
+
+<li>
+	<h4> 18 March 2011 </h4>
+
+	<p>
+	<b>Mauna Loa.</b>  
+	Values reported in the March 2011 update of Recent Trends in CO2 at Mauna Loa may show small 
+	differences (up to about 0.2ppm) from previous updates.  We recently recomputed the entire Mauna Loa CO2 record from the raw
+	CO2 analyzer voltage data to
+	
+	<ol>
+	<li>
+	take into account small changes in assigned CO2 values of reference gases
+	after re-calibration;
+	</li>
+
+	<li>
+	insure all CO2 mole fraction values are computed consistently throughout the record;
+	</li>
+
+	<li>
+	apply a consistent data flagging scheme to the entire record.  This mainly
+	affected the years 2003-2007, which previously used a slightly different flagging routine from the standard one.
+	</li>
+	</ol>
+	</p>
+
+	<p>
+	More details about calculations and flagging are at <a href="/gmd/ccgg/about/co2_measurements.html">how we measure background CO2 levels</a>.
+	</p>
+
+</li>
+
+<li>
+	<h4> 10 March 2010 </h4>
+	<p>
+	<b>Mauna Loa.</b>  
+	The CO2 analyzer developed a problem in mid-February, in which it exhibited sudden switches back and forth between two levels, about 0.4 ppm apart.  This happened for the air measurements as well as for the hourly calibrations with the reference gases.  The data could be saved for those hours in which the “analyzer state” of the calibrations could be determined, and then comparing air measurements that were in that same analyzer state.  The analyzer has now been replaced.
+	</p>
+	<p>
+		A second change is that we went back, for the entire record, to representing the average seasonal cycle by four sine and four cosine functions instead of six each, reversing the change we made on 4 August 2008.  The reason is that using four is more stable numerically, while the difference between the two approaches in representing the full seasonality is minor. 
+	</p>
+</li>
+
+<li>
+	<h4>6 May 2009</h4>
+	<p>
+	<b>Global.</b>  The global average CO2 record based on marine boundary layer sites was corrected because of a sampling problem at Cold Bay, Alaska, that had developed over the last few months.  It caused increasingly larger errors on the high side. The affected samples were flagged in the record and removed from the global average.  In addition, as happens every month, another month of data was added to the calculation, which often causes minor adjustments to the estimate. Together, these two factors caused the estimate of the global growth rate for 2008 to decrease from 2.05 to 1.84 ppm/year.
+	</p>
+</li>
+
+<li>
+
+	<h4>12 January 2009</h4>
+	<p>
+	<b>Mauna Loa.</b>  
+	We corrected an error in the December 2008 MLO monthly mean value posted
+	to the web on 10 January 2009. The December 2008 value was incorrectly
+	computed using an earlier version of the codebase (see Change Log Notes
+	for 4 August 2008).
+	</p>
+
+	<p>
+	We have also changed the monthly web update from the 3rd of each month to
+	the 10th of each month to give us a few more days to properly evaluate the
+	measurements for the just-completed month. 
+	</p>
+</li>
+
+<li>
+	<h4>19 November 2008</h4>
+	<p>
+	<b>Mauna Loa.</b>  
+	We corrected an error in the data posted for the previous October on 3 November 2008.  The assigned CO2 values for the reference gas mixtures in use at our Pt. Barrow Observatory, Alaska, had mistakenly been used in calculating CO2 mole fraction values for the Mauna Loa data, resulting in a value for October that was ~1.5 ppm too high.  The error became apparent because of an abrupt shift in the comparison between measurements of flask air samples taken at Mauna Loa, but analyzed in Boulder, Colorado and the continuous analyzer operating at Mauna Loa.  There is always a delay of several weeks between the collection and analysis of the flask air samples.  
+	</p>
+</li>
+
+<li>
+	<h4>3 September 2008</h4>
+	<p>
+	<b>Mauna Loa.</b>  
+	On 24 July 2008 the middle reference gas cylinder was switched out, but the new reference value was not entered in the database at that time. The CO2 mole fraction in the new cylinder is higher than the old cylinder by 1.15 ppm, but the quadratic fit describing the analyzer response in volts to the CO2 mole fraction, did not "know" that the reference gas had a higher value. We saw the error two weeks later, leading to an upward correction of the July value of 0.78 ppm. The error was also visible in the jump exhibited by the target gas measurements on 24 July.  For more detail, we recommend reading <a href="/gmd/ccgg/about/co2_measurements.html">how we measure background CO2 levels</a>.  
+	</p>
+</li>
+
+<li>
+	<h4>4 August 2008</h4>
+	<p>
+	<b>Mauna Loa.</b>  
+	The CO2 analyzer was down during most of July.  Measurements resumed on 22 July 2008, so that there were only 10 days of data from 22 through 31 July.  Every year, photosynthesis by plants removes CO2 from the atmosphere during the growing season.  At Mauna Loa the rate of decrease is highest in July and August.  Therefore, the direct monthly average for July 2008, based only on the last 10 days, was lower than what could be expected for a full monthly average by about 0.7 ppm. On 3 August 2008 the direct monthly mean for July was posted to the CO2 trends web page. We had written a graphing program which corrected the directly calculated monthly mean back to the middle of the month, taking the multi-year average rate of CO2 drawdown during July into account. The program also makes the same corrections for all other months in our CO2 record when there are missing days. Note that these corrections are retroactive. However, they were not posted to the web on 3 August 2008.
+	</p>
+	<p>
+	A second change was made to the program at the same time. The average seasonal cycle for any given number of years is determined by a curve fit to the years included in the average. We used to define the average seasonal as the sum of four sine and four cosine functions, with periodicity of one, two, three and four cycles per year, respectively. In the revision, we increased that to six sine and cosine functions with periodicities of one through six cycles per year because the latter was able to capture better the temporary slowdown of the seasonal rate of CO2 increase that often occurs during February. 
+	</p>
+	<p>
+	The revisions for all months, including July 2008, were posted to the web on 4 August. On average the corrections are small; one standard deviation of the revisions is 0.06 ppm.
+	</p>	
+</li>
+</ul>
+</div>
+
+
+
+
+    </div> <!-- end mainsection -->
+
+    <div id="footer" style="font-size: 100%;">
+
+	<div class="row">
+	    <div id="orgs" class="col-md-7">
+                <h4>
+		   <a href="http://www.noaa.gov/">National Oceanic and Atmospheric Administration</a> <br>
+		   <a href="/">Earth System Research Laboratory</a> <br>
+		   <a href="/gmd/">Global Monitoring Division</a>
+                </h4>
+	    </div>
+
+	    <div class="col-md-5" id="policies">
+              <p>
+		<a href="https://www.facebook.com/NOAAESRL" title="ESRL Facebook" aria-label="ESRL Facebook">&nbsp;<i class="fa fa-2x fa-facebook"></i></a>
+		<a href="https://twitter.com/NOAA_ESRL" title="ESRL Twitter" aria-label="ESRL Twitter"> <i class="fa fa-2x fa-twitter"></i></a>
+		<a href="https://www.youtube.com/user/NOAAESRL" title="ESRL Youtube Channel" aria-label="ESRL Youtube"> <i class="fa fa-2x fa-youtube"></i></a>
+		<a href="https://www.flickr.com/photos/noaa_esrl" title="ESRL Flickr" aria-label="ESRL Flickr"> <i class="fa fa-2x fa-flickr"></i></a>
+              </p>
+
+		<a href="/gmd/about/contacts.html">Contact Us</a> | 
+		<a href="mailto:webmaster.gmd&#64;noaa.gov">Webmaster</a> | 
+		<a href="/gmd/sitemap">Site Map</a>
+                <br>
+		<a href="http://www.noaa.gov/privacy.html">Privacy Policy</a> | 
+		<a href="https://www.esrl.noaa.gov/about/accessibility.html">Accessibility</a> | 
+		<a href="/gmd/about/disclaimer.html">Disclaimer</a> | 
+		<a href="https://www.usa.gov/">USA.gov</a>
+	    </div>
+	</div>
+
+
+    </div> <!-- end footer -->
+
+</div> <!-- end container -->
+
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+      var usasearch_config = { siteHandle:"noaa_esrl_gmd" };
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "https://search.usa.gov/javascripts/remote.loader.js";
+      document.getElementsByTagName("head")[0].appendChild(script);
+//]]>
+</script>
+
+<script id="_fed_an_ua_tag" type="text/javascript" src="/gmd/js/federated-analytics.js?agency=DOC&sub­agency=NOAA&pua=UA-50368700-1"></script>
+
+
+
+
+</body>
+</html>
+
+

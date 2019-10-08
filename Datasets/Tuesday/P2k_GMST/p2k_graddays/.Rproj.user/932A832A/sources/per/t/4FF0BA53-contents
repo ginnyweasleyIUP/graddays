@@ -1,0 +1,411 @@
+### Generate Figures for GMST reconstruction paper: PAGES2k Consortium (2019); Nature Geoscience. RN 2019/03/29
+
+#functions & definitions ------------------------------------------------
+library(zoo)
+library(RColorBrewer)
+library(scales)
+library(parallel)
+source("R-functions_gmst.R")
+
+#reference period
+start.ref<-1961
+end.ref<-1990
+
+#folder with reconstruction outputs
+recons.folder<-"recons/"
+
+experiment.names<-c("CPS","PCR","M08","PAI","OIE","BHM","DA")
+
+ftype<-"bw"
+
+#number of cores for parallel calculations
+ncores<-3
+
+##read in the reconstructions------------------------
+nexp<-length(experiment.names)
+recon.files<-paste0(experiment.names,".txt")
+recons<-list()
+
+for(i in seq_along(recon.files)){
+  filename<-paste0(recons.folder,recon.files[i])
+  recons[[i]]<-read.ts(filename,sep="\t",header=F,skip=1)  
+}
+
+
+#make anomalies and get ensemble medians ------------
+recon.medians<-ts(matrix(nrow=2000,ncol=length(recons)),start=1)
+for(exp in seq_along(recon.files)){
+    #make anomalies relative to ensemble mean over the ref period to not introduce changes in the ensemble spread
+    em<-tsapply(recons[[exp]],1,function(x) median(x,na.rm=T))
+    em.ref<-mean(window(em,start.ref,end.ref))
+    recons[[exp]]<-recons[[exp]]-em.ref
+    recon.medians[,exp]<-anomalies.period(em,start.ref,end.ref)
+}
+
+##generate full ensemble matrix------
+ full.ensemble<-c()
+ for(exp in 1:(nexp)){
+   full.ensemble<-cbind(full.ensemble,recons[[exp]])
+   print(exp)
+}
+
+# save(full.ensemble,file="full.ensemble.RData")
+
+##filter time series -------------------
+#31-year lowpass
+fullens.30<-tsfilt(full.ensemble,31,ftype)
+medians.30<-tsfilt(recon.medians,width = 31,ftype)
+
+#multi-decadal 30-200yr bandpass
+fullens.bp.30.200<-tsapply(full.ensemble,2,function(x) bandpass.tsc.na(x,30,200,cut.end = F,end.m = "pad"))
+medians.bp.30.200<-tsapply(recon.medians,2,function(x) bandpass.tsc.na(x,30,200,cut.end = F,end.m = "pad"))
+
+save(fullens.30,medians.30,fullens.bp.30.200,medians.bp.30.200,file="recons_filtered.RData")
+
+
+#load the newest instrumental data ---------------------
+## To use the offline file provided with the recon data:
+#instr.new<-as.matrix(read.table("had4_krig_ama_v2_0_0.txt"))
+#instr.new.ama<-ts(instr.new[,2],start=instr.new[1,1])
+## To use the newest updated version online from the producers:
+instr.new<-as.matrix(read.table("http://www-users.york.ac.uk/~kdc3/papers/coverage2013/had4_krig_v2_0_0.txt"))
+instr.new.ama<-anomalies.period(ts(rollapply(instr.new[-c(1:3),2],12,mean,by=12),start=1850),1961,1990)
+
+instr.new.ama.6190<-anomalies.period(instr.new.ama,1961,1990)
+instr.new.ama.6190.30<-tsfilt(instr.new.ama.6190,width = 31,ftype)
+
+#color definitions----------
+
+x<-brewer.pal(length(experiment.names)+1,"Set1")
+show_col(x)
+#get rid of yellow
+x<-x[-6]
+#4 and 7 are too similar
+x[7]<-rgb(0,238/255,238/255)
+exp.cols<-x
+show_col(exp.cols)
+
+#Make the plot for Fig. 1---------------------------------
+##width 180mm, caption 66 words--> height maximum 210 mm
+
+pdf(paste0("Fig_1.pdf"),width=7.087*1.67,height=5.67*1.67)
+par(mfrow=c(2,1))
+xl<-c(-10,2010)
+yl<-c(-0.85,0.5)
+par(mai=c(0.5,0.9,0.3,1.3))
+plot.quantile.densities(fullens.30,addmedian = F,sepfac.col = 100,maxcol = 0.05,mcol=1,scol=c(0,0,0),xl=xl,yl=yl)
+#plot(NA,xlim=xl,ylim=yl)
+abline(h=0,col=2,lty=3)
+mtext(side=4,"Quantile",padj=8)
+mtext(side=1,"Year CE",padj=4)
+mtext(side=2,"Temperature anomaly wrt 1961-1990 [°C]",padj=-5)
+axis(2,las=2,at=seq(-0.9,0.4,0.1))
+axis(1,at=seq(0,2000,200))
+axis(1,at=seq(100,1900,200),labels=F)
+for(i in rev(seq_along(experiment.names))){
+  lines(medians.30[,i],lwd=3,col=exp.cols[i])
+}
+lines(instr.new.ama.6190.30,col=1,lwd=3)
+legtext<-c("Instrumental target",experiment.names)
+legsorder<-c(1,4,7,2,5,8,3,6)
+legend("topleft",legtext,col=c(1,exp.cols),lwd=3,ncol =4,bty="n")#,text.width = tw)
+
+lines(ts(apply(fullens.30,1,quantile,probs=0.025,na.rm=T)),lty=3)
+lines(ts(apply(fullens.30,1,quantile,probs=0.975,na.rm=T)),lty=3)
+lines(c(xl[2]+(xl[2]-xl[1])*0.01,xl[2]+(xl[2]-xl[1])*0.01+(xl[2]-xl[1])*0.01),rep((yl[2]-yl[1])/100*2.5+yl[1],2),lty=3,xpd=T)
+text(-150,0.48,"a",xpd=T,font=2)
+
+yl<-c(-0.25,0.3)
+par(mai=c(0.9,0.9,0.3,1.3))
+plot.quantile.densities(fullens.bp.30.200,addmedian = F,sepfac.col = 100,maxcol = 0.05,mcol=1,scol=c(0,0,0),xl=xl,yl=yl)
+abline(h=0,col=2,lty=3)
+mtext(side=4,"Quantile",padj=8)
+mtext(side=1,"Year CE",padj=4)
+mtext(side=2,"Temperature anomaly [°C]",padj=-5)
+axis(2,las=2,at=seq(-0.2,0.2,0.1))
+axis(1,at=seq(0,2000,200))
+axis(1,at=seq(100,1900,200),labels=F)
+for(i in rev(seq_along(experiment.names))){
+  lines(medians.bp.30.200[,i],lwd=3,col=exp.cols[i])
+}
+legend("topleft",experiment.names,col=exp.cols,lwd=3,ncol = 4,bty="n")
+lines(ts(apply(fullens.bp.30.200,1,quantile,probs=0.025,na.rm=T)),lty=3)
+lines(ts(apply(fullens.bp.30.200,1,quantile,probs=0.975,na.rm=T)),lty=3)
+lines(c(xl[2]+(xl[2]-xl[1])*0.01,xl[2]+(xl[2]-xl[1])*0.01+(xl[2]-xl[1])*0.01),rep((yl[2]-yl[1])/100*2.5+yl[1],2),lty=3,xpd=T)
+text(-150,0.25,"b",xpd=T,font=2)
+
+dev.off()
+
+
+##load model data ----------
+
+load("Models_fullforced_Past1000_GMST_AprMAr.RData")
+models<-models.ama.fullforced;rm(models.ama.fullforced)
+models<-anomalies.period(models,start.ref, end.ref)
+
+models.bp.30.200<-tsapply(window(models,850,1995),2,function(x) bandpass.tsc.na(x,30,200,cut.end = F,end.m = "pad"))
+models.bp.30.200.range.q<-ts(t(apply(models.bp.30.200,1,quantile,probs=c(seq(0,1,by=0.1)),na.rm=T)),start=tsp(models.bp.30.200)[1])
+
+
+## load forcing data --------------
+forcing<-read.ts("forcing2.csv")
+
+# Make Fig. 2 -----------------
+ms<-1700
+mly<-0.21
+mlf<-60
+
+pdf("Fig_2.pdf",width=7.087*1.67,height=2.83*1.67)
+par(mai=c(0.8,0.9,0.1,0.8))
+yl<-c(-0.37,0.4)
+xl<-c(850,2010)
+plot(window(medians.bp.30.200,800),lwd=3,plot.type="s",col=exp.cols,xlab= "Year CE",ylab="Temperature anomaly wrt 1916-1995 [°C]",ylim=yl,xlim=xl,tick=F,labels=F)
+axis(1,at=seq(800,2000,by=100),labels=seq(800,2000,by=100))
+axis(1,at=seq(800,2000,by=50),labels=F)
+axis(2,las=2)
+par(new=T)
+abline(h=0,lty=3)
+legend("topleft",experiment.names,col=exp.cols,lwd=3,ncol = 4,bty="n")
+
+lines(rep(ms,2),c(mly+0.01,mly+0.07))
+for(i in 1:5){
+  tspolygon(models.bp.30.200.range.q[,i],models.bp.30.200.range.q[,(12-i)],col=rgb(0,0,0,0.09))
+  rect(ms,mly,ms+i/2*mlf,mly+0.05,col=rgb(0,0,0,0.09))
+  lines(rep(ms+i/2*mlf,2),c(mly+0.01,mly+0.07))
+  # text(3.75+i/2,mly+0.05,20*i,pos=3)
+  text(ms+i/2*mlf,mly+0.09,50+10*i,pos=3)
+  text(ms+i/2*mlf,mly+0.05,50-10*i,pos=3)
+}
+text(ms+1.5*mlf,mly+0.17,"CMIP5 model percentile (n=23)")
+
+par(new=T)
+plot(forcing[,2],ylim=c(0,1),col=3,lwd=2,xlim=xl,axes=F,xlab="",ylab="")
+axis(4,at=seq(0,0.3,by=0.1),col=3,col.axis=3,adj=1,las=2)
+mtext(side=4,"Volcanic forcing (AOD)",col=3,padj=4,adj=0)
+
+dev.off()
+
+
+#get the D&A results---------------------
+
+load("DandA_CESM_ens_30-200_1318.RData")
+
+xmat<-cbind(as.vector(da.cesm.all.ens.14.30.200),
+            as.vector(da.cesm.volc.ens.14.30.200[1:1001,]),
+            as.vector(da.cesm.volc.ens.14.30.200[1002:2002,]),
+            as.vector(da.cesm.volc.ens.14.30.200[2003:3003,]))
+#calculate the boxplot
+bxp.cesm.all.90<-bxp.q(xmat,min=0.05,max=0.95)
+
+da.cesm.30.200.medians<-c()
+for (m in 1:7){
+  da.cesm.30.200.medians<-cbind(da.cesm.30.200.medians,c(median(da.cesm.all.ens.14.30.200[,((m-1)*1000+1):(m*1000)]),
+                                                         median(da.cesm.volc.ens.14.30.200[1:1001,((m-1)*1000+1):(m*1000)]),
+                                                         median(da.cesm.volc.ens.14.30.200[1002:2002,((m-1)*1000+1):(m*1000)]),
+                                                         median(da.cesm.volc.ens.14.30.200[2003:3003,((m-1)*1000+1):(m*1000)])))
+}
+
+da.cesm.30.200.resid.medians<-c()
+for (m in 1:7){
+  da.cesm.30.200.resid.medians<-c(da.cesm.30.200.resid.medians,median(da.cesm.all.ens.14.30.200.resid[((m-1)*1000+1):(m*1000),]))
+}
+
+#boxplot for the unforced variability (panel b)
+bxp.iv3.mqp<-bxp.q(list(a=as.vector(sqrt(da.cesm.all.ens.14.30.200.resid/499)),
+                        b=as.vector(sqrt(models.ctl.var.30.200/499)),
+                        c=apply(window(fullens.bp.30.200,850,1100),2,function(x) sd(x,na.rm=T)),
+                        d=apply(window(models.bp.30.200,850,1100),2,function(x) sd(x,na.rm=T))),
+                   min=0.05,max=0.95)
+
+
+novolcvars.bp.medians<-c()
+for (m in 1:7){
+  novolcvars.bp.medians<-cbind(novolcvars.bp.medians,
+                               median(apply(window(fullens.bp.30.200[,((m-1)*1000+1):(m*1000)],851,1100),2,function(x) var(x,na.rm=T))))
+}
+
+novolcvars.bp.models<-apply(window(models.bp.30.200,851,1100),2,function(x) var(x,na.rm=T))
+
+
+# Make Fig. 3 ----------------------
+
+ceda<-1.3
+varcol<-"brown"
+dccols<-c("grey",
+          rgb(218/255,165/255,32/255,0.7),
+          rgb(0,1,0,0.7),
+          rgb(0,0,1,0.7))
+
+
+pdf(paste0("Fig_3.pdf"),width=7.087*1.67,height=2.83*1.67)
+layout(cbind(1,2), widths = c(1,1))
+par(mai=c(0.8,0.9,0.5,0))  
+bxp(bxp.cesm.all.90,outline=F,boxfill=dccols,boxlwd=2,medlwd=5,
+    whisklwd=2,staplelwd=2,axes=F,ylim=c(-1.07,1.77))
+abline(h=0)
+abline(h=1,lty=3)
+abline(v=1.5,lwd=1,lty=2)
+box()
+axis(2,las=2,cex.axis=ceda)
+mtext(side=2,"Scaling factor",padj = -4,cex=ceda)
+axis(1,at=seq(0.5,3.5),labels=F)
+points(rep(1,7),da.cesm.30.200.medians[1,],cex=2.5,pch=21,bg=exp.cols)
+points(rep(2,7),da.cesm.30.200.medians[2,],cex=2.5,pch=21,bg=exp.cols)
+points(rep(3,7),da.cesm.30.200.medians[3,],cex=2.5,pch=21,bg=exp.cols)
+points(rep(4,7),da.cesm.30.200.medians[4,],cex=2.5,pch=21,bg=exp.cols)
+text(seq(1,4),-1.5,c("Total\nforcing","Solar\nforcing","Volcanic\nforcing","GHG\nforcing"),cex=ceda,
+     col=dccols,xpd=T)
+text(0.42,1.97,"a",xpd=T,font=2,cex=1.5)
+
+par(mai=c(0.8,0.1,0.5,1.1)) 
+bxp(bxp.iv3.mqp,outline=F,boxfill=c(dccols[1],NA,NA,NA),border=c(1,1,varcol,varcol),boxlwd=2,medlwd=5,
+    whisklwd=2,staplelwd=2,axes=F,ylim=c(0.015,max(sqrt(models.ctl.var.30.200/499))))
+points(rep(1,7),sqrt(da.cesm.30.200.resid.medians/499),cex=2.5,pch=21,bg=exp.cols)
+points(rep(3,7),sqrt(novolcvars.bp.medians),cex=2.5,pch=21,bg=exp.cols)
+points(seq(3.6,4.4,by=0.8/(length(novolcvars.bp.models)-1)),sqrt(novolcvars.bp.models),pch=21,bg=1)
+points(seq(1.6,2.4,by=0.8/(length(models.ctl.var.30.200)-1)),sqrt(models.ctl.var.30.200/499),pch=21,bg=1)
+box()
+axis(4,las=2,cex.axis=ceda)
+mtext(side=4,"Standard deviation [°C]",padj = 5,cex=ceda)
+axis(1,at=seq(1.5,3.5,1),labels=F)
+text(c(1,2,3.1,4.1),0.0062,c("D&A\nresidual","Model\ncontrol runs","\nRecons","\nModels"),cex=ceda,
+     col=c(dccols[1],1,varcol,varcol),xpd=T)
+text(3.65,0.0083,"Low-forced period",cex=ceda,xpd=T,col=varcol)
+text(0.42,0.0765,"b",xpd=T,font=2,cex=1.5)
+abline(v=c(2.5),lwd=1,lty=2)
+
+layout(1)
+par(new=T)
+plot(NA,xlim = c(0,1),ylim=c(0,1),axes=F,ylab="",xlab = "")
+legend(0.3,1.21,experiment.names,pt.bg =exp.cols,pch=21,
+       xpd=T,horiz=T,pt.cex = 2.5,bty = "n",text.width = 0.05)
+
+dev.off()
+
+
+
+# calculate the runing 51-year linear trends--------
+cl <- makeCluster(ncores)
+
+clusterExport(cl, c("full.ensemble","rollapply","fasttrend"), envir = .GlobalEnv)
+
+trends.50<-parApply(cl,full.ensemble,2,function(x) rollapply(x,width=51,FUN=fasttrend)) 
+trends.50<-ts(trends.50,start=start(full.ensemble)[1])
+
+trends.50.models<-parApply(cl,models,2,function(x) rollapply(x,width=51,FUN=fasttrend)) 
+trends.50.models<-ts(trends.50.models,start=start(models)[1])
+
+trends.50.instr<-ts(rollapply(instr.new.ama,51,fasttrend),start=start(instr.new.ama)[1])
+
+trends.50.preind.range975.selexp.all<-quantile(window(trends.50,end=1801),probs=0.975,na.rm=T)
+trends.50.models.preind.range975.all<-quantile(window(trends.50.models,end=1801),probs=0.975,na.rm=T)
+
+#PI-control runs
+load("Models_ctrl_GMST_AprMar.RData")
+pics.det<-tsapply(ctl.ama,2,fastdetrend) #remove potential long-term drift from control runs
+trends.50.picontrols<-apply(pics.det,2,function(x) rollapply(x,width=51,FUN=fasttrend))
+trends.50.picontrols.range975.all<-quantile(trends.50.picontrols,probs=0.975,na.rm=T)
+
+save(trends.50,trends.50.models,trends.50.instr,trends.50.picontrols,
+     trends.50.preind.range975.selexp.all,trends.50.models.preind.range975.all,trends.50.picontrols.range975.all,
+     file="Trends.RData")
+
+#get EBM results---------
+load("ebm_results_volc_vs_all_forcing300.RData")
+
+#running probabilities for occurrence of largest trend >1850--------------------------
+#window of trend lengths to use
+tls<-seq(10,150)
+
+# number of trend segmetns after 1850
+ng1850.tls.50<-150-ceiling(tls/2)
+# divided by number of total trend segments to get random number probability
+prand.trends<-ng1850.tls.50/(2001-tls)
+
+#indices of PCR,CPS and PAI methods. These are the methods where noise-proxy recons are available for comparison
+selexp.fullens.pcp<-c(1:1000,1001:2000,3001:4000)
+
+#get noise recons
+load("recons.PCP.ARnoise.RData")
+
+maxt.tls.probs.1850.50.pcp<-c()
+maxt.tls.probs.1850.50.noiserecons<-c()
+
+clusterExport(cl, c("tls","noise.full.ensemble","full.ensemble","rollapply","fasttrend"), envir = .GlobalEnv)
+#   #for noise only:
+#   #clusterExport(cl, c("tls","noise.full.ensemble","rollapply","fasttrend"), envir = .GlobalEnv)
+#   # for real recons only: 
+#   clusterExport(cl, c("tls","full.ensemble","rollapply","fasttrend",), envir = .GlobalEnv)
+   
+ptm<-proc.time()[3]/60
+
+for(tl in seq_along(tls)){
+  clusterExport(cl, c("tl"), envir = .GlobalEnv)
+  #real data recons    
+    trendsx<-parApply(cl,full.ensemble[,selexp.fullens.pcp],2,function(x) rollapply(x,width=tls[tl],FUN=fasttrend)) #
+    trendsx<-ts(trendsx,start=1)
+    maxt.x<-apply(trendsx,2,function(x) which.max(x))
+    maxt.tls.probs.1850.50.pcp[tl]<-length(which(maxt.x>(1850-ceiling(tls[tl]/2)+2)))/length(which(!is.na(maxt.x)))
+  #noise recons
+    trendsx<-parApply(cl,noise.full.ensemble,2,function(x) rollapply(x,width=tls[tl],FUN=fasttrend)) #
+    trendsx<-ts(trendsx,start=1)
+    maxt.x<-apply(trendsx,2,function(x) which.max(x))
+    maxt.tls.probs.1850.50.noiserecons[tl]<-length(which(maxt.x>(1850-ceiling(tls[tl]/2)+2)))/length(which(!is.na(maxt.x)))
+    
+  print(c(tl,maxt.tls.probs.1850.50.pcp[tl],proc.time()[3]/60-ptm))
+  gc()
+}
+
+#  save(maxt.tls.probs.1850.50.pcp,file="Maxt_g-1850_10-150_PCP.RData")
+#  save(maxt.tls.probs.1850.50.noiserecons,file="Maxt_g-1850_10-150_noiserecons.RData")
+
+# Make Fig. 4 ----------------
+tls.cols<-c(1,"darkorange","chocolate4")
+
+pdf("Fig_4.pdf",width=7.087*2.3,height=2.59*2.2)
+layout(matrix(c(1,2), 1, 2, byrow = TRUE),widths = c(3,1))
+xl<-c(0,2100)
+yl<-c(-0.012,0.015)
+par(mai=c(0.9,1,0.6,1.2))
+
+plot.quantile.densities(ts(trends.50,start=50),scol=c(0,0,0),mcol=1,xl=xl,yl=yl)
+#plot(ts(x,start=50),xlim=xl,ylim=yl,xlab="",ylab="",axes=F,yaxs="i",xaxs="i")
+mtext(side=4,"Ensemble percentiles",col=1,padj=7)
+mtext(side=1,"Year CE",padj=4)
+abline(h=0,lty=3)
+lines(ts(trends.50.instr,start=start(trends.50.instr)[1]+49),col=4,lwd=3,lty=2,xpd=T)
+axis(1,at=seq(0,2000,by=200))
+axis(1,at=seq(0,2000,by=100),labels=F)
+axis(2,las=2)
+lines(x = c(0,2000),y=rep(trends.50.preind.range975.selexp.all,2),lwd=2,lty=1)
+lines(x = c(0,2000),y=rep(trends.50.models.preind.range975.all,2),col=2,lty=2,lwd=2)
+lines(x = c(0,2000),y=rep(trends.50.picontrols.range975.all,2),col=2,lty=3,lwd=3)
+legend(0,0.015,c("Reconstructions","Instrumental data","EBM Volcanic forcing"),col=c(1,4,3),lwd=2,lty=c(1,2,1))
+legend(500,0.0163,c("Pre-industrial 97.5th percentiles","Reconstructions (1-1850 CE)","Last Millennium simulations (850-1850 CE)","Control simulations"),
+       col=c(NA,1,2,2),lwd=c(NA,2,2,2),lty=c(NA,1,2,3),bty="n",xpd=T)
+text(-180,0.017,"a",cex=1.5,xpd=T,font=2)
+par(new=T)
+plot(window(rout_volc$tsout,start=50),xlim=xl,col=3,lwd=2,ylim=range(rout_volc$tsout)+c(-0.01,1),yaxs="i",xaxs="i",axes=FALSE,xlab="",ylab="",box=F,bty="n")
+axis(4,pos=2010,at=seq(289.05,289.45,by=0.4),
+     labels=seq(289.05,289.45,by=0.4)-273.15,col=3,col.axis=3,adj=1,las=2)
+axis(4,pos=2010,at=seq(289.05,289.45,by=0.1),labels=F,col=3,col.axis=3)
+mtext(side=4,"GMST [°C]",col=3,padj=-1.5,adj=0.1)
+mtext(side=3,"51-year trends",padj=-1.9,cex=1.5)
+mtext(side=2,"51-yr trend [°C]",padj=-6,cex=1)
+
+par(mai=c(0.9,0.01,1,0.85))
+plot(tls,maxt.tls.probs.1850.50.pcp,ylim=c(0,1),ylab="",xlab="Trend length [years]",col=tls.cols[1],axes=F,t="l",lwd=5)
+box()
+axis(1,at=seq(20,140,by=20),labels=seq(20,140,by=20))
+axis(4,at=seq(0,1,by=0.2),col=1,las=2,labels=seq(0,1,by=0.2))
+mtext(side=4,"Ensemble probability\n(Largest trend after 1850)",padj=2)
+par(new=T)
+plot(tls,maxt.tls.probs.1850.50.noiserecons,ylim=c(0,1),col=tls.cols[2],xlab="",ylab="",axes=F,t="l",lwd=5)
+par(new=T)
+plot(tls,prand.trends,ylim=c(0,1),col=tls.cols[3],xlab="",ylab="",axes=F,t="l",lwd=5)
+legend(20,1.23,c("Reconstructions","AR-noise proxy reconstructions",
+                 "Random numbers"),col=tls.cols,lwd=2,xpd=T,horiz=F,bty="n",pt.lwd = 3)
+text(7,1.24,"b",cex=1.5,xpd=T,font=2)
+mtext(side=3,"Industrial-Era trends",cex=1.5,padj=-4)
+dev.off()
+
